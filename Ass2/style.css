@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.backgr {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    z-index: -3;
+}
+
+.backgr1 {
+    width: 52.3%;
+    height: 100vh;
+    background-color: white;
+}
+
+.backgr2 {
+    width: 50%;
+    height: 100vh;
+    background-color: #c1342a;
+}
+
+.logoimg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main {}
+
+.nav {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 20px;
+    gap: 60px;
+}
+
+.search {
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px 10px 20px;
+    background-color: rgb(179, 177, 177);
+}
+
+.contant {
+    display: flex;
+}
+
+.name {
+    margin-left: 85px;
+    margin-top: 160px;
+    rotate: calc(-90deg);
+    font-size: 55px;
+}
+
+.item {
+    margin-left: -180px;
+    margin-top: 140px;
+    font-style: bold;
+    font-size: 20px;
+}
+
+.item ul li {
+    margin-top: 20px;
+}
+
+li::marker {
+    color: red;
+}
+
+
+/* red size */
+
+.navred {
+    margin: 20px;
+}
+
+.navred ul {
+    color: white;
+    display: flex;
+    column-gap: 60px;
+    margin-left: 190px;
+    font-weight: lighter;
+
+}
+
+.navred ul li {
+    list-style: none;
+    
+}
+
+.contantright{
+    margin-left: 200px;
+}
+.text{
+    margin-top: 200px;
+    margin-left: 120px;
+    font-size: 45px;
+    color: white;
+}
