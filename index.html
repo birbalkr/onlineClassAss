@@ -3,11 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Online Class</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            color: #1b1f24;
+            background: linear-gradient(135deg, #f7f9fc 0%, #e8eef8 100%);
+        }
+
+        .container {
+            width: min(1000px, 92%);
+            margin: 0 auto;
+            padding: 56px 0;
+        }
+
+        .hero {
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 4vw, 44px);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2.2vw, 20px);
+            color: #4b5563;
+            max-width: 680px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #d8e1f0;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(23, 42, 79, 0.08);
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #4b5563;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            background: #1f6feb;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #165dcc;
+        }
+    </style>
 </head>
 <body>
-    <a href="Ass1/index.html">Assignment 1</a>
-    <a href="Ass2/index.html">Assignment 2</a>
-    <a href="Ass3/index.html">Assignment 3</a>
+    <main class="container">
+        <section class="hero">
+            <h1>Online Class</h1>
+            <p>This is a sample homepage layout. Use the cards below to open each assignment project.</p>
+        </section>
+
+        <section class="grid">
+            <article class="card">
+                <h2>Assignment 1</h2>
+                <p>Pokemon themed visual layout with split background and hero image.</p>
+                <a class="btn" href="Ass1/index.html">Open Assignment 1</a>
+            </article>
+
+            <article class="card">
+                <h2>Assignment 2</h2>
+                <p>Insect classification page with dual-column composition and details panel.</p>
+                <a class="btn" href="Ass2/index.html">Open Assignment 2</a>
+            </article>
+
+            <article class="card">
+                <h2>Assignment 3</h2>
+                <p>Open your third assignment page from here as part of the sample layout.</p>
+                <a class="btn" href="Ass3/index.html">Open Assignment 3</a>
+            </article>
+        </section>
+    </main>
 </body>
 </html>
