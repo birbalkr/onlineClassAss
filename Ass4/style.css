@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 100%;
+    background-color: #080505;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    /* background-color: #080505; */
+    grid-template-columns: 22% 20% 7% 27% 22%;
+    grid-template-rows: 29% 24% 7% 18% 18%;
+    grid-template-areas:
+        "class1 class2 class2 class3 class4"
+        "class1 class5 class5 class5 class4"
+        "class1 class5 class5 class5 class4"
+        "class6 class5 class5 class5 class9"
+        "class6 class7 class8 class8 class9";
+    gap: 10px;
+}
+
+.class1 {
+    background-color: #68b651;
+    grid-area: class1;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class2 {
+    background-color: #931414;
+    grid-area: class2;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class3 {
+    background-color: #080505;
+    grid-area: class3;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class4 {
+    background-color: #8873d4d3;
+    grid-area: class4;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class5 {
+    background-color: #d4b887d3;
+    grid-area: class5;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class6 {
+    background-color: #d48787d3;
+    grid-area: class6;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class7 {
+    background-color: #b122aed3;
+    grid-area: class7;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class8 {
+    background-color: #e01761d3;
+    grid-area: class8;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.class9 {
+    background-color: #340233d3;
+    grid-area: class9;
+    border: 2px solid white;
+    border-radius: 25px;
+}

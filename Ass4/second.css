@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin-top: 12px;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 5% 35% 21% 20% 17%;
+    grid-template-rows: 25% 55% 20%;
+
+    grid-template-areas:
+        "class1 class2 class3 class3 class3"
+        "class1 class2 class4 class4 class5"
+        "class1 class2 class6 class7 class7";
+    gap: 10px;
+}
+
+.class1 {
+    grid-area: class1;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.class1 a{
+    text-decoration: none;
+    font-size: large;
+}
+
+.class2 {
+    /* background-color: rgb(7, 27, 27); */
+    grid-area: class2;
+    border-radius: 25px;
+    background-color: rgb(111, 96, 165);
+}
+
+.class2 img {
+    width: 300px;
+    height: 400px;
+    /* margin: -10px 0px 0 -2px; */
+}
+.class21{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.class21 img{
+    z-index: 1;
+}
+.class2text{
+    width: 10px;
+    color: white;
+    margin: 27px;
+}
+.class2text span{
+    font-size: 75px;
+}
+.circleimg{
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    margin: -8px 0 0 -18px;
+    border-radius: 50%;
+    border: 4px solid white;
+}
+.circle {
+    margin: -5px 0 0 -14px;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: thistle;
+}
+
+.class3 {
+    grid-area: class3;
+    border-radius: 25px;
+}
+
+.class4 {
+    grid-area: class4;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.class5 {
+    grid-area: class5;
+    border: 2px solid white;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.class6 {
+    background-color: rgb(134, 131, 131);
+    grid-area: class6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    gap: 5px;
+    color: white;
+    border: 2px solid rgb(134, 131, 131);
+    border-radius: 25px;
+}
+
+.class7 {
+    grid-area: class7;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.class7 img {
+    width: 100px;
+    height: 100px;
+    margin: 0 20px 0 0;
+}
