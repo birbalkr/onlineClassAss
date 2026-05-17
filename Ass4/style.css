@@ -9,7 +9,7 @@ body {
     font-family: 'Poppins', sans-serif;
     height: 100%;
     width: 100%;
-    background-color: #080505;
+    background-color: #000000;
 }
 
 .main {
@@ -18,7 +18,7 @@ body {
     display: grid;
     /* background-color: #080505; */
     grid-template-columns: 22% 20% 7% 27% 22%;
-    grid-template-rows: 29% 24% 7% 18% 18%;
+    grid-template-rows: 27% 24% 7% 18% 20%;
     grid-template-areas:
         "class1 class2 class2 class3 class4"
         "class1 class5 class5 class5 class4"
@@ -29,35 +29,61 @@ body {
 }
 
 .class1 {
-    background-color: #68b651;
+    background-color: rgb(235, 200, 220);
     grid-area: class1;
     border: 2px solid white;
     border-radius: 25px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    background-color: #d48787d3;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .class2 {
-    background-color: #931414;
+    background-color: #ffffff;
     grid-area: class2;
     border: 2px solid white;
     border-radius: 25px;
+    padding:25px;
 }
 
 .class3 {
-    background-color: #080505;
+    background-color: #ffffff;
     grid-area: class3;
     border: 2px solid white;
     border-radius: 25px;
+padding: 30px 0 0 30px  ;
 }
 
 .class4 {
-    background-color: #8873d4d3;
+    background-color: #ffffff;
     grid-area: class4;
     border: 2px solid white;
     border-radius: 25px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.class4img img{
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 50%;
+    margin-left: -16px;
 }
 
 .class5 {
-    background-color: #d4b887d3;
     grid-area: class5;
     border: 2px solid white;
     border-radius: 25px;
@@ -68,13 +94,42 @@ body {
     grid-area: class6;
     border: 2px solid white;
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 17px;
 }
 
+.class6img {
+    display: flex;
+    border-radius: 25px;
+    gap: 20px;
+
+
+}
+
+.class6img img {
+    width: 40%;
+    height: 130px;
+    border-radius: 25px;
+}
+
+
 .class7 {
-    background-color: #b122aed3;
+
     grid-area: class7;
     border: 2px solid white;
     border-radius: 25px;
+    overflow: hidden;
+}
+
+.class7img {
+    width: 100%;
+    height: 100%;
+    background-image: url(image/ass213.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
 }
 
 .class8 {
@@ -82,11 +137,18 @@ body {
     grid-area: class8;
     border: 2px solid white;
     border-radius: 25px;
+    display: flex;
+    justify-content: center;
 }
 
 .class9 {
-    background-color: #340233d3;
+    background-color: #ffffff;
     grid-area: class9;
     border: 2px solid white;
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
