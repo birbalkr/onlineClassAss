@@ -8,6 +8,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://kit.fontawesome.com/ab9e96e66f.js" crossorigin="anonymous"></script>
 </head>
+<style>
+.marquee {
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+</style>
+
 
 <body>
     <nav class="flex justify-between items-center p-6">
@@ -376,16 +391,29 @@
 
     </div>
 
-    <marquee behavior="" direction="">
-        <div class="flex gap-10 h-60 py-10 justify-center items-center"> <img class="w-40" src="image/1.svg" alt="">
-            <img  src="image/2.svg" alt="">
-            <img class="w-80  h-70" src="image/3.svg" alt="">
-            <img class="w-80  h-70" src="image/1.svg" alt="">
-            <img class="w-80  h-70" src="image/2.svg" alt="">
-            <img class="w-80  h-70" src="image/3.svg" alt="">
-            <img class="w-80  h-60" src="image/4.svg" alt="">
-        </div>
-    </marquee>
+
+    <div class="overflow-hidden py-10 bg-white">
+    <div class="marquee flex gap-10 items-center w-max">
+        <img class="w-40" src="image/1.svg" alt="">
+        <img class="w-40" src="image/2.svg" alt="">
+        <img class="w-80 h-70" src="image/3.svg" alt="">
+        <img class="w-80 h-70" src="image/1.svg" alt="">
+        <img class="w-80 h-70" src="image/2.svg" alt="">
+        <img class="w-80 h-70" src="image/3.svg" alt="">
+        <img class="w-80 h-60" src="image/4.svg" alt="">
+
+        <!-- Duplicate for smooth infinite loop -->
+        <img class="w-40" src="image/1.svg" alt="">
+        <img class="w-40" src="image/2.svg" alt="">
+        <img class="w-80 h-70" src="image/3.svg" alt="">
+        <img class="w-80 h-70" src="image/1.svg" alt="">
+        <img class="w-80 h-70" src="image/2.svg" alt="">
+        <img class="w-80 h-70" src="image/3.svg" alt="">
+        <img class="w-80 h-60" src="image/4.svg" alt="">
+    </div>
+</div>
+
+
 
     <div class="flex justify-between px-40 items-center gap-10 mt-10">
         <div><img class="w-34" src="image/Dribbble-Logo-500x281.webp" alt="img"></div>
