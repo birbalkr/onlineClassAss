@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Leaves and a Bud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body class="bg-white">
+
+    <header class="sticky top-0 z-50 w-full bg-[#f5f0eb] shadow-md">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+
+
+            <div class="flex items-center justify-between h-16">
+
+
+                <nav class="hidden lg:flex items-center gap-6">
+
+
+                    <div class=" relative">
+                        <button
+                            class="flex items-center gap-1 text-[13px] font-medium tracking-wide text-gray-700 hover:text-[#5a7a4a] transition-colors">
+                            Shop
+                            <svg class="w-4 h-4 text-[#5a7a4a]" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9" stroke-width="2" />
+                                <path d="M8 11l4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                    <div class=" relative">
+                        <button
+                            class="flex items-center gap-1 text-[13px] font-medium tracking-wide text-gray-700 hover:text-[#5a7a4a] transition-colors">
+                            Learn
+                            <svg class="w-4 h-4 text-[#5a7a4a]" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9" stroke-width="2" />
+                                <path d="M8 11l4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+
+                    </div>
+
+
+                    <a href="#"
+                        class="flex items-center gap-1.5 text-[13px] font-medium tracking-wide text-gray-700 hover:text-[#5a7a4a] transition-colors">
+                        Reviews
+                        <span class="text-yellow-400 text-base leading-none">★</span>
+                    </a>
+                </nav>
+
+                <a href="#" class="flex-shrink-0 mx-auto lg:mx-0">
+                    <img src="https://www.twoleavestea.com/cdn/shop/files/Twoleaves_logo.svg?v=1768205424&width=420"
+                        alt="Two Leaves and a Bud" class="h-10 w-auto" />
+                </a>
+
+                <div class="hidden lg:flex items-center gap-5">
+                    <a href="#"
+                        class="text-[11px] font-semibold tracking-widest uppercase text-gray-600 hover:text-[#5a7a4a] transition-colors whitespace-nowrap">
+                        My Account
+                    </a>
+                    <a href="#"
+                        class="text-[11px] font-semibold tracking-widest uppercase text-gray-600 hover:text-[#5a7a4a] transition-colors whitespace-nowrap">
+                        Cafe &amp; Wholesale
+                    </a>
+                    <a href="#"
+                        class="text-[11px] font-semibold tracking-widest uppercase text-gray-600 hover:text-[#5a7a4a] transition-colors whitespace-nowrap">
+                        Tea Journal
+                    </a>
+
+
+                    <a href="#"
+                        class="relative p-1.5 rounded-full hover:bg-[#e8e2db] transition-colors ml-1">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" />
+                            <path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span
+                            class="badge absolute -top-1 -right-1 w-5 h-5 bg-[#f5a623] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                            0
+                        </span>
+                    </a>
+                </div>
+
+                <div class="flex lg:hidden items-center gap-3">
+
+                    <a href="#" class="relative p-1.5 rounded-full hover:bg-[#e8e2db] transition-colors">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" />
+                            <path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span
+                            class="absolute -top-1 -right-1 w-5 h-5 bg-[#f5a623] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                            0
+                        </span>
+                    </a>
+
+
+                    <button class="p-2 rounded-lg hover:bg-[#e8e2db] transition-colors">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+                        </svg>
+                        <svg class="w-6 h-6 text-gray-700 hidden" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </header>
+
+    <main>
+        <div
+            class="w-full min-h-[90vh] bg-[url('https://www.twoleavestea.com/cdn/shop/files/AlpineBerry_mobile.webp?v=1774284087&width=1350.0')] bg-cover sm:bg-contain bg-right bg-no-repeat bg-[#00a3d9] flex items-center">
+            <div class="px-6 sm:px-10 lg:px-16 max-w-lg">
+                <h1
+                    class="text-3xl sm:text-4xl lg:text-5xl font-['Playfair_Display'] text-white leading-snug drop-shadow-md">
+                    A great cup starts with a careful pluck — the top two leaves and a bud.
+                </h1>
+                <a href="#best-sellers"
+                    class="mt-8 inline-block bg-white text-[#5a7a4a] font-semibold text-sm tracking-widest uppercase px-7 py-3 rounded-full hover:bg-[#5a7a4a] hover:text-white transition-colors shadow-lg">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+
+
+        <section class="px-4 sm:px-8 lg:px-14 py-16">
+            <div class="flex justify-center mb-12">
+                <h2
+                    class="text-4xl font-['Playfair_Display'] bg-pink-300 px-5 py-2 rounded-xl -rotate-[6deg] shadow-md">
+                    Best Sellers
+                </h2>
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                <!-- Card 1 -->
+                <div
+                    class="bg-green-300 p-3 rounded-[15px] flex flex-col gap-3 hover:scale-[1.02] transition-transform">
+                    <div class="flex justify-between items-start">
+                        <span class="border border-black px-2 py-1 rounded-sm bg-white text-xs font-black">TEA
+                            SACHETS</span>
+                        <span class="text-xs text-gray-700">4.71 ★ (84)</span>
+                    </div>
+                    <div class="flex justify-center items-center flex-1">
+                        <img src="https://www.twoleavestea.com/cdn/shop/files/Bamboo_Tea_Chest.webp?v=1772543139&width=280"
+                            alt="Bamboo Tea Chest" class="w-full max-h-44 object-contain" />
+                    </div>
+                    <div class="text-center text-sm font-semibold text-gray-800">Bamboo Tea Chest</div>
+                    <button onclick="addToCart(this)"
+                        class="self-end border border-black flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-sm font-medium hover:bg-[#5a7a4a] hover:text-white hover:border-[#5a7a4a] transition-colors">
+                        <span class="text-base leading-none">+</span> Add
+                    </button>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-green-300 p-3 rounded-[15px] flex flex-col gap-3 hover:scale-[1.02] transition-transform">
+                    <div class="flex justify-between items-start">
+                        <span class="border border-black px-2 py-1 rounded-sm bg-white text-xs font-black">TEA
+                            SACHETS</span>
+                        <span class="text-xs text-gray-700">4.71 ★ (84)</span>
+                    </div>
+                    <div class="flex justify-center items-center flex-1">
+                        <img src="https://www.twoleavestea.com/cdn/shop/files/bundle-herbal-tea-trio-featured-image.webp?v=1772174356&width=880"
+                            alt="Herbal Tea Trio" class="w-full max-h-44 object-contain" />
+                    </div>
+                    <div class="text-center text-sm font-semibold text-gray-800">Herbal Tea Trio</div>
+                    <button onclick="addToCart(this)"
+                        class="self-end border border-black flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-sm font-medium hover:bg-[#5a7a4a] hover:text-white hover:border-[#5a7a4a] transition-colors">
+                        <span class="text-base leading-none">+</span> Add
+                    </button>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-green-300 p-3 rounded-[15px] flex flex-col gap-3 hover:scale-[1.02] transition-transform">
+                    <div class="flex justify-between items-start">
+                        <span class="border border-black px-2 py-1 rounded-sm bg-white text-xs font-black">TEA
+                            SACHETS</span>
+                        <span class="text-xs text-gray-700">4.71 ★ (84)</span>
+                    </div>
+                    <div class="flex justify-center items-center flex-1">
+                        <img src="https://www.twoleavestea.com/cdn/shop/files/organic_tropical_green_tea_sachet_featured.webp?v=1771579242&width=880"
+                            alt="Tropical Green Tea" class="w-full max-h-44 object-contain" />
+                    </div>
+                    <div class="text-center text-sm font-semibold text-gray-800">Tropical Green Tea</div>
+                    <button onclick="addToCart(this)"
+                        class="self-end border border-black flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-sm font-medium hover:bg-[#5a7a4a] hover:text-white hover:border-[#5a7a4a] transition-colors">
+                        <span class="text-base leading-none">+</span> Add
+                    </button>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-green-300 p-3 rounded-[15px] flex flex-col gap-3 hover:scale-[1.02] transition-transform">
+                    <div class="flex justify-between items-start">
+                        <span class="border border-black px-2 py-1 rounded-sm bg-white text-xs font-black">TEA
+                            SACHETS</span>
+                        <span class="text-xs text-gray-700">4.71 ★ (84)</span>
+                    </div>
+                    <div class="flex justify-center items-center flex-1">
+                        <img src="https://www.twoleavestea.com/cdn/shop/files/peppermint_naked_featured.webp?v=1771580547&width=880"
+                            alt="Peppermint Naked" class="w-full max-h-44 object-contain" />
+                    </div>
+                    <div class="text-center text-sm font-semibold text-gray-800">Peppermint Naked</div>
+                    <button onclick="addToCart(this)"
+                        class="self-end border border-black flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-sm font-medium hover:bg-[#5a7a4a] hover:text-white hover:border-[#5a7a4a] transition-colors">
+                        <span class="text-base leading-none">+</span> Add
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+
+        </section>
+        adminb
+    </main>
+
+
+</body>
+
+</html>
