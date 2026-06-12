@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-Do</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100vh;
+        width: 100%;
+        background-color: gray;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .box input {
+        width: 300px;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+    }
+
+    .box button {
+        height: 30px;
+        padding: 0 10px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .tasks >div {
+        display: flex;
+        justify-content: space-between;
+        width: 400px;
+        padding: 10px;
+        margin-top: 8px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <h1>TO-Do List</h1>
+        <div>
+            <input type="text" id="task" placeholder="Enter a new task">
+            <button id="btn">Add Task</button>
+        </div>
+        <div class="tasks">
+            
+        </div>
+
+    </div>
+    <script src="toDo.js"></script>
+</body>
+
+</html>
