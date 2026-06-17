@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale= ">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <main class="flex justify-center">
+        <div class="task-update w-1/2 mt-10 border-2 border-gray-300 p-4 rounded-lg shadow-md">
+            <div class="grid grid-cols-3 gap-2">
+                <div class="flex flex-col items-center p-2">
+                    <div>0</div>
+                    <div>Total tasks</div>
+                </div>
+
+                <div class="flex flex-col items-center p-2">
+                    <div>0</div>
+                    <div>Completed</div>
+                </div>
+
+                <div class="flex flex-col items-center p-2">
+                    <div>0</div>
+                    <div>Pending</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="mt-4 p-4 border-2 border-gray-300 rounded-lg hover:bg-gray-100">
+                    <div class="flex items-center gap-4">
+                        <img src="image/plus.png" alt="image">
+                        <div>Add new Task.</div>
+                    </div>
+                    <div class="flex justify-space-between items-center mt-4 p-4">
+                        <div class="flex items-center gap-4 w-full">
+                            <input type="text" placeholder="Task Title"
+                                class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                        </div>
+                        <div class="flex items-center gap-4 ml-5">
+                            <div class="flex items-center cursor-pointer">
+                                work
+                                <img src="image/down.png" alt="down" style="width: 20px; height: 15px;">
+                            </div>
+                            <div class="flex items-center cursor-pointer">
+                                <img src="image/plus.png" alt="plus" style="width: 20px; height: 20px;">Add
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
