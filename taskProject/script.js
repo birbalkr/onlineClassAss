@@ -84,6 +84,13 @@ addTaskBtn.addEventListener("click", () => {
 tasklist.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete")) {
         e.target.parentElement.parentElement.remove();
+        totalCount.textContent = parseInt(totalCount.textContent) - 1;
+        if (e.target.parentElement.parentElement.querySelector(".done").textContent === "✅ Done") {
+            doneCount.textContent = parseInt(doneCount.textContent) - 1;
+        }
+        else {
+            pendingCount.textContent = parseInt(pendingCount.textContent) - 1;
+        }
     }
 });
 
@@ -118,3 +125,5 @@ console.log(searchItem);
     console.log("cat");
     
 });
+
+
