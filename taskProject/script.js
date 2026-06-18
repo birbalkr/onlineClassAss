@@ -99,8 +99,14 @@ let doneCount = document.getElementById("donecount");
 tasklist.addEventListener("click", (e) => {
     if (e.target.classList.contains("done")) {
         e.target.textContent = "✅ Done";
-        doneCount.textContent = parseInt(doneCount.textContent) + 1;
-        pendingCount.textContent = parseInt(pendingCount.textContent) - 1;
+        
+        if (doneCount.textContent < totalCount.textContent) {
+            doneCount.textContent = parseInt(doneCount.textContent) + 1;
+        }
+
+        if (pendingCount.textContent > 0) {
+            pendingCount.textContent = parseInt(pendingCount.textContent) - 1;
+        }
     }
 });
 
@@ -116,14 +122,6 @@ clearTaskBtn.addEventListener("click", () => {
 
 
 // search input
-let searchInput = document.getElementById("searchInput");
-let searchCategory = document.getElementById("searchCategory");
-searchCategory.addEventListener("change", ()=>{
-    let searchItem = searchCategory.value.toLowerCase();
-console.log(searchItem);
 
-    console.log("cat");
-    
-});
 
 
