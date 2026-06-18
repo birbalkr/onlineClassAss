@@ -65,10 +65,10 @@ addTaskBtn.addEventListener("click", () => {
                         : null;
     if (title.trim() === "") return;
     tasklist.innerHTML += `
-    <div class="taskItem flex justify-between items-center p-2 border-b-2 border-gray-300">
+    <div class="taskItem flex justify-between items-center p-3 border-2 border-gray-300 rounded-xl">
                     <h3>${title}</h3>
                     <div class="flex gap-2">
-                        <button class="${categoryColors}">${category}</button>
+                        <button class="${categoryColors} category">${category}</button>
                         <button class="done">Done</button>
                         <button class="editTask">Edit</button>
                         <button class="delete">Delete</button>
@@ -97,7 +97,24 @@ tasklist.addEventListener("click", (e) => {
     }
 });
 
+// clear task 
+
+let clearTaskBtn = document.querySelector(".clearTask");
+clearTaskBtn.addEventListener("click", () => {
+    tasklist.innerHTML = "";
+    totalCount.textContent = "0";
+    pendingCount.textContent = "0";
+    doneCount.textContent = "0";
+});
 
 
+// search input
+let searchInput = document.getElementById("searchInput");
+let searchCategory = document.getElementById("searchCategory");
+searchCategory.addEventListener("change", ()=>{
+    let searchItem = searchCategory.value.toLowerCase();
+console.log(searchItem);
 
-
+    console.log("cat");
+    
+});
