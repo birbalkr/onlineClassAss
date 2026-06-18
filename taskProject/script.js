@@ -35,3 +35,69 @@ themeBtn.addEventListener("click", () => {
         });
     }
 });
+
+
+// task add 
+
+let taskInput = document.getElementById("taskinput");
+let selectOption = document.getElementById("selectOption");
+let addTaskBtn = document.querySelector(".addTask");
+let tasklist = document.getElementById("tasklist");
+let totalCount = document.getElementById("totalcount");
+let pendingCount = document.getElementById("pendingcount");
+
+addTaskBtn.addEventListener("click", () => {
+    let title = taskInput.value;
+    let category = selectOption.value;
+
+    console.log(`Task: ${title}, Category: ${category}`);
+
+    // color 
+    const categoryColors =
+        category.toLowerCase() === "work"
+            ? "border border-red-500 text-red-500 px-2 rounded"
+            : category.toLowerCase() === "personal"
+                ? "border border-green-500 text-green-500 px-2 rounded"
+                : category.toLowerCase() === "health"
+                    ? "border border-blue-500 text-blue-500 px-2 rounded"
+                    : category.toLowerCase() === "other"
+                        ? "border border-yellow-400 text-yellow-500 px-2 rounded"
+                        : null;
+    if (title.trim() === "") return;
+    tasklist.innerHTML += `
+    <div class="taskItem flex justify-between items-center p-2 border-b-2 border-gray-300">
+                    <h3>${title}</h3>
+                    <div class="flex gap-2">
+                        <button class="${categoryColors}">${category}</button>
+                        <button class="done">Done</button>
+                        <button class="editTask">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>`
+    totalCount.textContent = parseInt(totalCount.textContent) + 1;
+    pendingCount.textContent = parseInt(pendingCount.textContent) + 1;
+    taskInput.value = "";
+});
+
+
+// delete 
+tasklist.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete")) {
+        e.target.parentElement.parentElement.remove();
+    }
+});
+
+let doneCount = document.getElementById("donecount");
+// task done
+tasklist.addEventListener("click", (e) => {
+    if (e.target.classList.contains("done")) {
+        e.target.textContent = "✅ Done";
+        doneCount.textContent = parseInt(doneCount.textContent) + 1;
+        pendingCount.textContent = parseInt(pendingCount.textContent) - 1;
+    }
+});
+
+
+
+
+
