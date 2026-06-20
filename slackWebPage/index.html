@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div>
-        <nav class="flex items-center justify-between p-4 w-4/5 mx-auto">
+    <div class="w-4/5 mx-auto">
+        <nav class="flex items-center justify-between p-4">
             <div class="flex items-center gap-4">
-                <div class="flex gap-2"><img src="image/download.svg" alt="" width="30px">
-                    <h3 class="text-2xl font-bold">Slack</h3>
+                <div>
+                    <img src="image/logo.png" alt="" width="90px">
                 </div>
 
                 <!-- // features dropdown -->
@@ -214,6 +215,26 @@
                 <div class="border-2 py-2 px-4 rounded-md bg-[#611f69] font-medium text-white">GET STARTED</div>
             </div>
         </nav>
+        <div class="flex flex-col items-center gap-4 text-center mt-10 mx-27">
+            <div class="text-6xl font-medium ">All your people and AI agents working together.</div>
+            <div class="text-lg font-sm">Slack connects your team. Slackbot multiplies what they can do.</div>
+            <div class="flex gap-4">
+                <div class="border-2 py-4 px-8 rounded-md bg-[#611f69] font-medium text-white">GET STARTED</div>
+                <div
+                    class="border-2 py-4 px-10 rounded-md border-[#611f69] text-[#611f69] font-medium flex justify-ceter items-center">
+                    FIND YOUR SUBSCRIPTION <img src="image/rightarrow.png" alt="image"></div>
+            </div>
+            <div class="logolist flex gap-12 items-center">
+                <div class="text-sm">Trusted by top teams</div>
+                <img src="image/gm.png" alt="image">
+                <img src="image/openai.png" alt="image">
+                <img src="image/round.png" alt="image">
+                <img src="image/paramount.png" alt="image">
+                <img src="image/stripe.png" alt="image">
+                <img src="image/ibm.png"alt="image">
+            </div>
+            <video class="mt-10" src="image/slackVideo.mp4" width="80%" autoplay ></video>
+        </div>
     </div>
 
     <script src="script.js"></script>
