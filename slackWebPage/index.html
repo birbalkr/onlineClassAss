@@ -231,9 +231,20 @@
                 <img src="image/round.png" alt="image">
                 <img src="image/paramount.png" alt="image">
                 <img src="image/stripe.png" alt="image">
-                <img src="image/ibm.png"alt="image">
+                <img src="image/ibm.png" alt="image">
             </div>
-            <video class="mt-10" src="image/slackVideo.mp4" width="80%" autoplay ></video>
+
+            <video id="mainVideo" class="mt-10" width="80%" autoplay loop muted>
+                <source src="image/video/slackVideo.mp4" type="video/mp4">
+            </video>
+
+            <div class="grid grid-cols-3 gap-4 mt-10">
+                <div class="video-btn py-2 px-3 border rounded-full" data-video="slackVideo.mp4">Ask Slackbot</div>
+                <div class="video-btn py-2 px-3 border rounded-full" data-video="planLaunches.mp4">Plan launches</div>
+                <div class="video-btn py-2 px-3 border rounded-full" data-video="runProject.mp4">Run projects</div>
+                <div class="video-btn py-2 px-3 border rounded-full" data-video="chatWithClients.mp4">Chat with clients</div>
+                <div class="video-btn py-2 px-3 border rounded-full" data-video="Automate.mp4">Automate tasks</div>
+            </div>
         </div>
     </div>
 
