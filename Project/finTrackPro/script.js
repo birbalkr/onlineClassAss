@@ -38,6 +38,39 @@ closeBtn.addEventListener('click', () => {
 
 // rightSide code
 
+// chartjs 
+// chat id 
+
+const ctx = document.getElementById("myChart");
+
+const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: ["Income Vs Expense"],
+        datasets: [
+            {
+                label: "Income",
+                data: [0],
+                borderWidth: 1
+            },
+            {
+                label: "Expense",
+                data: [0],
+                borderWidth: 1
+            }
+        ]
+    },
+});
+
+function updateChart(income, expense) {
+    myChart.data.datasets[0].data = [income];
+    myChart.data.datasets[1].data = [expense];
+    myChart.update();
+}
+
+
+
+// fetch value from the input fields id
 let transType = document.querySelector('#transType');
 let transDesc = document.querySelector('#transDesc');
 let transAmount = document.querySelector('#transAmount');
@@ -45,21 +78,48 @@ let transDate = document.querySelector('#transDate');
 let transCategory = document.querySelector('#transCategory');
 let addTransBtn = document.querySelector('#addTransBtn');
 
+// show data on cart id
+let currentBalance = document.querySelector('#currentBalance');
+let currentSymbol = document.querySelector('#currentSymbol');
+let incomeSymbol = document.querySelector('#incomeSymbol');
+let incomeBalance = document.querySelector('#incomeBalance');
+let expenseSymbol = document.querySelector('#expenseSymbol');
+let expenseBalance = document.querySelector('#expenseBalance');
+let transactionnumber = document.querySelector('#transactionnumber');
+
+
 addTransBtn.addEventListener('click', () => {
 
-    // fetch value from the input fields
+
     let type = transType.value;
     let desc = transDesc.value;
-    let amount = transAmount.value;
+    let amount = parseFloat(transAmount.value);
     let date = transDate.value;
     let category = transCategory.value;
 
     console.log(type, desc, amount, date, category);
     transDesc.value = '';
-    amount.value = '';
+    transAmount.value = '';
     transDate.value = '';
     addTransactionPage.classList.add('hidden');
+
+    if (type === 'income') {
+        let chartincome = incomeBalance.textContent = parseFloat(incomeBalance.textContent) + parseFloat(amount);
+        currentBalance.textContent = parseFloat(currentBalance.textContent) + parseFloat(amount);
+    } else if (type === 'expense') {
+        let chartexpense = expenseBalance.textContent = parseFloat(expenseBalance.textContent) + parseFloat(amount);
+        currentBalance.textContent = parseFloat(currentBalance.textContent) - parseFloat(amount);
+    }
+
+    updateChart(
+        parseFloat(incomeBalance.textContent),
+        parseFloat(expenseBalance.textContent)
+    );
+    
+    transactionnumber.textContent = parseInt(transactionnumber.textContent) + 1;
 });
+// show data on cart
+//  totalCount.textContent = parseInt(totalCount.textContent) + 1;
 
 
 
@@ -78,25 +138,3 @@ addTransBtn.addEventListener('click', () => {
 
 
 
-
-// chartjs 
-const ctx = document.getElementById('myChart');
-let income = 505;
-let expense = 3000;
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Income Vs Expense'],
-        datasets: [{
-            label: 'Income',
-            data: [`${income}`],
-            borderWidth: 1
-        },
-        {
-            label: 'Expense',
-            data: [`${expense}`],
-            borderWidth: 1
-        }]
-    },
-
-});
