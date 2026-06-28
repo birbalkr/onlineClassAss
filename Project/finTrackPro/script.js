@@ -1,4 +1,6 @@
-// left size code 
+// login code 
+// register code 
+// leftSize code 
 
 // Navbar code 
 let dashbord = document.querySelector("#dash");
@@ -33,6 +35,8 @@ closeBtn.addEventListener('click', ()=>{
     addTransactionPage.classList.add('hidden');
 })
 
+
+// rightSide code
 
 
 
