@@ -1,4 +1,13 @@
 // login code 
+if (window.location.pathname.includes("index.html")) {
+
+    if (localStorage.getItem("login") !== "true") {
+
+        window.location.href = "login.html";
+
+    }
+
+}
 // register code 
 // leftSize code 
 
@@ -118,12 +127,6 @@ addTransBtn.addEventListener('click', () => {
     
     transactionnumber.textContent = parseInt(transactionnumber.textContent) + 1;
 });
-// show data on cart
-//  totalCount.textContent = parseInt(totalCount.textContent) + 1;
-
-
-
-
 
 
 
