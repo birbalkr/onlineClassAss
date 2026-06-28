@@ -16,7 +16,7 @@
 
     <div class="flex h-screen">
 
-        <div class="left bg-red w-[16%] items-center gap-2 p-4 border-r-2 border-gray-400">
+        <div class="left bg-red w-[16%] items-center gap-2 p-4 border-r-2 border-gray-100">
             <div class="flex">
                 <i class="fa-solid fa-layer-group fa-2x"></i>
                 <div>
@@ -47,9 +47,11 @@
                 </div>
             </div>
         </div>
-        <div class="right bg-white w-[84%]">
 
-            <nav class="flex gap-4 justify-end items-center p-4 border-b-2 border-gray-400">
+        <!-- right -->
+        <div class="right bg-white w-[84%] overflow-y-auto">
+
+            <nav class="flex gap-4 justify-end items-center p-4 border-b-2 border-gray-100">
                 <hr>
                 <div>name</div>
                 <div>
@@ -68,14 +70,14 @@
                 <!-- card  -->
                 <div class="grid grid-cols-4 gap-4 mt-4">
 
-                    <div class="border-2 p-4 gap-2 flex flex-col rounded-xl">
+                    <div class="border-gray-100 border-2 p-4 gap-2 flex flex-col rounded-xl">
                         <div class="w-10 h-10 bg-blue-100 text-blue-900 justify-center flex items-center rounded-xl"><i
                                 class="fa-solid fa-building-columns "></i></div>
                         <div class="text-sm">Current Balance</div>
                         <div class="text-2xl text-blue-900 font-bold"><span>$</span>0.00</div>
                     </div>
 
-                    <div class="border-2 p-4 gap-2 flex flex-col rounded-xl">
+                    <div class="border-gray-100 border-2 p-4 gap-2 flex flex-col rounded-xl">
                         <div class="w-10 h-10 bg-green-100 text-green-900  justify-center flex items-center rounded-xl">
                             <i class="fa-solid fa-arrow-trend-up"></i>
                         </div>
@@ -83,14 +85,14 @@
                         <div class="text-2xl text-green-900 font-bold"><span>$</span>0.00</div>
                     </div>
 
-                    <div class="border-2 p-4 gap-2 flex flex-col rounded-xl">
+                    <div class="border-gray-100 border-2 p-4 gap-2 flex flex-col rounded-xl">
                         <div class="w-10 h-10 bg-rose-100 text-rose-900  justify-center flex items-center rounded-xl"><i
                                 class="fa-solid fa-arrow-trend-down"></i></div>
                         <div class="text-sm">Total Expense</div>
                         <div class="text-2xl text-rose-900 font-bold"><span>$</span>0.00</div>
                     </div>
 
-                    <div class="border-2 p-4 gap-2 flex flex-col rounded-xl">
+                    <div class="border-gray-100 border-2 p-4 gap-2 flex flex-col rounded-xl">
                         <div class="w-10 h-10 bg-blue-100 text-blue-900 justify-center flex items-center rounded-xl"><i
                                 class="fa-solid fa-piggy-bank"></i></div>
                         <div class="text-sm">Total Transactions</div>
@@ -99,32 +101,73 @@
 
                 </div>
 
+                <!-- chart and dark mode -->
+                <!-- chart -->
                 <div class="mt-4 flex gap-4 w-full">
-                    <div class="border-2 p-4 gap-2 flex flex-col rounded-xl w-[60%]">
+                    <div class="border-gray-100 border-2 p-4 gap-2 flex flex-col rounded-xl w-[60%] h-[340px]">
                         <div class="text-2xl font-bold">Cash Flow Analysis</div>
-                        <div class="">
+                        <div class="w-full overflow-hidden">
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
 
-                    <div>
-                        <div>Preferences</div>
+                    <!-- dark -->
+                    <div class="border-gray-100 border-2 p-3 gap-2 flex flex-col rounded-xl w-[40%] h-[180px]">
+                        <div class="text-2xl font-bold">Preferences</div>
                         <div class="flex gap-2 items-center mt-4 justify-between">
-                            <div>Dark Mode</div>
+                            <div class="font-bold">Dark Mode</div>
                             <div>
                                 <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider round"></span>
-                            </label>
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
                             </div>
                         </div>
+                        <hr class="my-2 -mb-3">
+                        <div
+                            class="flex -mt-4 gap-2 items-center mt-4 justify-center cursor-pointer bg-red-100 py-2 rounded-md text-red-900">
+                            <i class="fa-solid fa-trash"></i>
+                            <div>Reset All Data</div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- All Transactions-->
+                <div>
+                    <div class="text-2xl font-bold">All Transactions</div>
+                    <div class="flex justify-between w-[60%]">
+                        <div class="flex items-center gap-2 border-gray-100 border-2 p-2 rounded-xl w-[60%]">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="search transaction" class="w-full outline-none">
+                        </div>
+                        <div class="flex items-center justify-between border-gray-100 border-2 p-2 rounded-xl w-[30%]">
+                            <select name="all" id="trans-drop" class="w-full outline-none">
+                                <option value="all">All Types</option>
+                                <option value="income">Income Only</option>
+                                <option value="expense">Expense Only</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- transaction task -->
+                    <div class="mt-4 border-gray-100 border-2 p-2 rounded-xl w-[60%]">
+                        <div class="grid grid-cols-5 gap-4 mt-4 border-b-2 border-gray-100 p-2">
+                            <div>DATE</div>
+                            <div>DESCRIPTION</div>
+                            <div>CATEGORY</div>
+                            <div>AMOUNT</div>
+                            <div>ACTIONS</div>
+                        </div>
+                        <!-- transaction task when add -->
+                        <div class="trans-task"></div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 

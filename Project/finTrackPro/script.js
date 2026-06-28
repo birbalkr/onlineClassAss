@@ -22,8 +22,8 @@
 
 // chartjs 
 const ctx = document.getElementById('myChart');
-let income = 55;
-let expense = 30;
+let income = 505;
+let expense = 3000;
 new Chart(ctx, { 
     type: 'bar',
     data: {
