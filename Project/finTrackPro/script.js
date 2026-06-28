@@ -1,3 +1,24 @@
+// left size code 
+let dashbord = document.querySelector("#dash");
+let setting=document.querySelector("#sett");
+let dashbordPage = document.querySelector("#dashPage");
+let settingPage=document.querySelector("#settingPage");
+
+
+setting.addEventListener('click', function(){
+    dashbord.classList.remove('bg-blue-200');
+    setting.classList.add('bg-blue-200');
+    dashbordPage.classList.add('hidden')
+    settingPage.classList.remove('hidden')
+
+
+})
+dashbord.addEventListener('click', function(){
+    setting.classList.remove('bg-blue-200');
+    dashbord.classList.add('bg-blue-200');
+    settingPage.classList.add('hidden')
+    dashbordPage.classList.remove('hidden')
+})
 
 
 
