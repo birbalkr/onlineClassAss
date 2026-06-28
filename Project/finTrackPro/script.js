@@ -1,9 +1,13 @@
 // left size code 
+
+// Navbar code 
 let dashbord = document.querySelector("#dash");
 let setting=document.querySelector("#sett");
 let dashbordPage = document.querySelector("#dashPage");
 let settingPage=document.querySelector("#settingPage");
-
+let addTransaction=document.querySelector('#addTrans');
+let addTransactionPage=document.querySelector('#TransactionLayout');
+let closeBtn=document.querySelector('#closeBtn');
 
 setting.addEventListener('click', function(){
     dashbord.classList.remove('bg-blue-200');
@@ -18,6 +22,15 @@ dashbord.addEventListener('click', function(){
     dashbord.classList.add('bg-blue-200');
     settingPage.classList.add('hidden')
     dashbordPage.classList.remove('hidden')
+})
+
+
+// Add Transaction
+addTransaction.addEventListener('click', ()=>{
+    addTransactionPage.classList.remove('hidden');
+})
+closeBtn.addEventListener('click', ()=>{
+    addTransactionPage.classList.add('hidden');
 })
 
 
