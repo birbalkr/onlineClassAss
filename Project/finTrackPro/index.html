@@ -12,27 +12,27 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="relative">
 
-    <div class="flex h-screen">
+    <div class="flex h-screen -z-1">
 
         <div class="left bg-red w-[16%] items-center gap-2 p-4 border-r-2 border-gray-100">
             <div class="flex">
                 <i class="fa-solid fa-layer-group fa-2x"></i>
                 <div>
                     <h1 class="text-xl font-bold">FinTrack Pro</h1>
-                    <span class="text-[12px]    ">Enterprise Finance</span>
+                    <span class="text-[12px]">Enterprise Finance</span>
                 </div>
             </div>
 
             <div class="flex flex-col justify-between h-[90%] mt-4">
                 <div class="flex flex-col">
-                    <div class="flex items-center gap-2 bg-white text-black p-2 rounded-md">
+                    <div class="flex items-center gap-2 bg-blue-200 text-black p-2 rounded-md">
                         <i class="fa-solid fa-border-all"></i>
                         <div>Dashboard</div>
                     </div>
 
-                    <div class="flex items-center gap-2 bg-white text-black p-2 rounded-md">
+                    <div class="flex items-center gap-2 text-black p-2 rounded-md">
                         <i class="fa-solid fa-gear"></i>
                         <div>Settings</div>
                     </div>
@@ -41,14 +41,16 @@
                 <div
                     class="flex justify-center items-center gap-2 bg-black text-white p-2 rounded-md mt-4 cursor-pointer">
                     <i class="fa-solid fa-plus"></i>
-                    <div>
+                    <div id="addtransacton">
                         Add Transaction
                     </div>
                 </div>
+
+
             </div>
         </div>
 
-        
+
         <!-- right -->
         <div class="right bg-white w-[84%] overflow-y-auto">
 
@@ -63,7 +65,7 @@
             </nav>
 
             <!-- dashboard page -->
-            <section class="p-6 hidden">
+            <section class="p-6 ">
 
                 <div class="flex flex-col gap-2 mt-4">
                     <span class="text-3xl font-bold">Financial Overview</span>
@@ -170,7 +172,7 @@
             </section>
 
             <!-- settings page -->
-            <section class="p-6">
+            <section class="p-6 hidden">
 
                 <div class="w-[80%]">
                     <div class="flex flex-col text-2xl font-bold gap-2 p-4">
@@ -205,6 +207,17 @@
 
     </div>
     </div>
+
+    <!-- Add Transacton -->
+    <section class="flex h-screen justify-center items-center bg-gray-10 absolute top-0 left-0 w-full h-full hidden bg-opacity-50 z-10"
+        id="addTransactonSection">
+        <div class="w-[30%] h-[30%] bg-white border-gray-100 border-2 rounded-xl shadow-lg p-4" id="addTransacton">
+            <div class="flex justify-between items-center">
+                <div>Add Transacton</div>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
