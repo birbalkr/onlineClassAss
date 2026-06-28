@@ -21,8 +21,14 @@ let settingPage = document.querySelector("#settingPage");
 let addTransaction = document.querySelector('#addTrans');
 let addTransactionPage = document.querySelector('#TransactionLayout');
 let closeBtn = document.querySelector('#closeBtn');
+// set username 
 let usernameSave = document.querySelector('#usernameSave');
-usernameSave.textContent = localStorage.getItem('username');
+let profileUser = document.querySelector('#profileUser');
+const username = localStorage.getItem('username');
+usernameSave.textContent = username;
+profileUser.value = username;
+
+
 
 setting.addEventListener('click', function () {
     dashbord.classList.remove('bg-blue-200');
@@ -63,12 +69,12 @@ const myChart = new Chart(ctx, {
         datasets: [
             {
                 label: "Income",
-                data: [0],
+                data: [`${localStorage.getItem("income") || 0}`],
                 borderWidth: 1
             },
             {
                 label: "Expense",
-                data: [0],
+                data: [`${localStorage.getItem("expense") || 0}`],
                 borderWidth: 1
             }
         ]
@@ -93,16 +99,12 @@ let addTransBtn = document.querySelector('#addTransBtn');
 
 // show data on cart id
 let currentBalance = document.querySelector('#currentBalance');
-let currentSymbol = document.querySelector('#currentSymbol');
-let incomeSymbol = document.querySelector('#incomeSymbol');
 let incomeBalance = document.querySelector('#incomeBalance');
-let expenseSymbol = document.querySelector('#expenseSymbol');
 let expenseBalance = document.querySelector('#expenseBalance');
 let transactionnumber = document.querySelector('#transactionnumber');
 
 
-addTransBtn.addEventListener('click', () => {
-
+addTransBtn.addEventListener("click", () => {
 
     let type = transType.value;
     let desc = transDesc.value;
@@ -110,31 +112,55 @@ addTransBtn.addEventListener('click', () => {
     let date = transDate.value;
     let category = transCategory.value;
 
-    console.log(type, desc, amount, date, category);
-    transDesc.value = '';
-    transAmount.value = '';
-    transDate.value = '';
-    addTransactionPage.classList.add('hidden');
+    localStorage.setItem("transType", type);
+    localStorage.setItem("transDesc", desc);
+    localStorage.setItem("transDate", date);
+    localStorage.setItem("transCategory", category);
 
-    if (type === 'income') {
-        let chartincome = incomeBalance.textContent = parseFloat(incomeBalance.textContent) + parseFloat(amount);
-        currentBalance.textContent = parseFloat(currentBalance.textContent) + parseFloat(amount);
-    } else if (type === 'expense') {
-        let chartexpense = expenseBalance.textContent = parseFloat(expenseBalance.textContent) + parseFloat(amount);
-        currentBalance.textContent = parseFloat(currentBalance.textContent) - parseFloat(amount);
+    if(type==="income"){
+        let totalbalance = parseFloat(currentBalance.textContent) + amount;
+        let totalincome = parseFloat(incomeBalance.textContent) + amount;
+        console.log(totalbalance);
+        localStorage.setItem("balance", totalbalance);
+        localStorage.setItem("income", totalincome);
+        
+    } else if(type==="expense"){
+        let totalbalance = parseFloat(currentBalance.textContent) - amount;
+        let totalexpense = parseFloat(expenseBalance.textContent) + amount;
+        console.log(totalbalance);
+        localStorage.setItem("balance", totalbalance);
+        localStorage.setItem("expense", totalexpense);
     }
 
-    updateChart(
-        parseFloat(incomeBalance.textContent),
-        parseFloat(expenseBalance.textContent)
-    );
+    localStorage.setItem("transactionnumber", (parseInt(localStorage.getItem("transactionnumber")) || 0) + 1);
 
-    transactionnumber.textContent = parseInt(transactionnumber.textContent) + 1;
+    addTransactionPage.classList.add('hidden');
+    loadData();
 });
 
+function loadData() {
+    console.log("Page Loaded");
+    transactionnumber.textContent = localStorage.getItem("transactionnumber") || "0";
+    incomeBalance.textContent = localStorage.getItem("income") || "0";
+    currentBalance.textContent = localStorage.getItem("balance") || "0";
+    expenseBalance.textContent = localStorage.getItem("expense") || "0";
+}
 
+window.onload = loadData;
 
-
+let resetData = document.querySelector('#resetData');
+resetData.addEventListener('click', () => {
+    localStorage.removeItem("balance");
+    localStorage.removeItem("income");
+    localStorage.removeItem("expense");
+    localStorage.removeItem("transactionnumber");
+    localStorage.removeItem("transType");
+    localStorage.removeItem("transDesc");
+    localStorage.removeItem("transDate");
+    localStorage.removeItem("transCategory");
+    loadData();
+    updateChart(0, 0);
+});
 
 
 
