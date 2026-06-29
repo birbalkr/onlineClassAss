@@ -107,7 +107,7 @@ addTransBtn.addEventListener("click", () => {
     let date = transDate.value;
     let category = transCategory.value;
 
-   let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
     transactions.push({
         type,
@@ -150,6 +150,10 @@ function loadData() {
     incomeBalance.textContent = localStorage.getItem("income") || "0";
     currentBalance.textContent = localStorage.getItem("balance") || "0";
     expenseBalance.textContent = localStorage.getItem("expense") || "0";
+    currentSymbol.textContent = localStorage.getItem('symbol');
+    incomeSymbol.textContent = localStorage.getItem('symbol');
+    expenseSymbol.textContent = localStorage.getItem('symbol');
+
 }
 
 window.onload = loadData;
@@ -168,38 +172,163 @@ resetData.addEventListener('click', () => {
     window.location.reload();
 });
 
+// ***********************************************
 
+// some code write by AI only this function is written by AI rest of the code is written by me
+
+// *************************************************
+const searchInput = document.querySelector('input[placeholder="search transaction"]');
+const filterType = document.getElementById("trans-drop");
+
+// Show transactions
 function showDataTask() {
 
     let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    let symbol = localStorage.getItem("symbol") || "$";
+
+    const search = searchInput.value.toLowerCase();
+
+  
+    const filter = filterType.value;
+
+
+    transactions = transactions.filter(item => {
+
+        const matchSearch = item.desc.toLowerCase().includes(search);
+
+        const matchType =
+            filter === "all" ? true : item.type === filter;
+
+        return matchSearch && matchType;
+    });
 
     transTask.innerHTML = "";
 
-    transactions.forEach(item => {
+    if (transactions.length === 0) {
+        transTask.innerHTML = `
+            <div class="text-center text-gray-400 p-4">
+                No Transactions Found
+            </div>
+        `;
+        return;
+    }
+
+    transactions.forEach((item, index) => {
 
         transTask.innerHTML += `
-        <div class="flex justify-between items-center border-gray-100 border-2 p-2 rounded-xl w-full mb-2">
-            <div class="flex gap-2 items-center">
-                <div class="w-10 h-10 bg-blue-100 text-blue-900 flex justify-center items-center rounded-xl">
-                    <i class="fa-solid fa-${item.category}"></i>
-                </div>
+        <div class="grid grid-cols-5 gap-4 border-b border-gray-100 p-3 items-center">
 
-                <div>
-                    <div class="text-sm">${item.desc}</div>
-                    <div class="text-xs text-gray-400">${item.date}</div>
-                </div>
+            <div>${item.date || "--"}</div>
+
+            <div>${item.desc}</div>
+
+            <div class="capitalize">${item.category}</div>
+
+            <div class="${item.type=="income"?"text-green-500":"text-red-500"}">
+                ${item.type=="income"?"+":"-"}
+                ${symbol}${Number(item.amount).toFixed(2)}
             </div>
 
-            <div class="text-sm text-${item.type === "income" ? "green" : "red"}-500">
-                ${item.type === "income" ? "+" : "-"}$${item.amount}
+            <div>
+                <button onclick="deleteTransaction(${index})"
+                class="bg-red-500 text-white px-3 py-1 rounded">
+                    Delete
+                </button>
             </div>
+
         </div>
         `;
-
     });
 
 }
 
+function deleteTransaction(index) {
+
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    let deletedTransaction = transactions[index];
+
+    // Get current totals
+    let balance = Number(localStorage.getItem("balance")) || 0;
+    let income = Number(localStorage.getItem("income")) || 0;
+    let expense = Number(localStorage.getItem("expense")) || 0;
+    let transactionNumber = Number(localStorage.getItem("transactionnumber")) || 0;
+
+    if (deletedTransaction.type === "income") {
+        income -= Number(deletedTransaction.amount);
+        balance -= Number(deletedTransaction.amount);
+    } else {
+        expense -= Number(deletedTransaction.amount);
+        balance += Number(deletedTransaction.amount);
+    }
+
+    transactions.splice(index, 1);
+
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    // Save updated totals
+    localStorage.setItem("income", income.toFixed(2));
+    localStorage.setItem("expense", expense.toFixed(2));
+    localStorage.setItem("balance", balance.toFixed(2));
+
+    transactionNumber--;
+    if (transactionNumber < 0) transactionNumber = 0;
+
+    localStorage.setItem("transactionnumber", transactionNumber);
+
+
+    showDataTask();
+    // showData();
+
+    alert("Transaction Deleted Successfully");
+    window.location.reload();
+}
+
+searchInput.addEventListener("input",showDataTask);
+
+
+filterType.addEventListener("change",showDataTask);
+
+showDataTask();
+
+// *******************************************************
+
+// *******************************************************
+
+
+let saveUpdateData = document.querySelector('#saveUpdateData');
+let transDrop = document.querySelector('#transDrop');
+let currentSymbol = document.querySelector('#currentSymbol');
+let incomeSymbol = document.querySelector('#incomeSymbol');
+let expenseSymbol = document.querySelector('#expenseSymbol');
+
+
+
+
+saveUpdateData.addEventListener('click', () => {
+    let newUsername = profileUser.value;
+    let symbol = transDrop.value;
+
+    symbol === "USD" ?
+        localStorage.setItem("symbol", "$") :
+        symbol === "EUR" ?
+            localStorage.setItem("symbol", "€")
+            :
+            symbol === "GBP" ?
+                localStorage.setItem("symbol", "£") :
+                symbol === "JPY" ?
+                    localStorage.setItem("symbol", "¥") :
+                    symbol === "INR" ?
+                        localStorage.setItem("symbol", "₹") : ""
+
+    currentSymbol.textContent = localStorage.getItem('symbol');
+    incomeSymbol.textContent = localStorage.getItem('symbol');
+    expenseSymbol.textContent = localStorage.getItem('symbol');
+    localStorage.setItem('username', newUsername);
+    usernameSave.textContent = newUsername;
+
+    alert('Username updated successfully!');
+})
 
 
 
