@@ -81,12 +81,6 @@ const myChart = new Chart(ctx, {
     },
 });
 
-function updateChart(income, expense) {
-    myChart.data.datasets[0].data = [income];
-    myChart.data.datasets[1].data = [expense];
-    myChart.update();
-}
-
 
 
 // fetch value from the input fields id
@@ -102,6 +96,7 @@ let currentBalance = document.querySelector('#currentBalance');
 let incomeBalance = document.querySelector('#incomeBalance');
 let expenseBalance = document.querySelector('#expenseBalance');
 let transactionnumber = document.querySelector('#transactionnumber');
+let transTask = document.querySelector('#transTask');
 
 
 addTransBtn.addEventListener("click", () => {
@@ -112,19 +107,26 @@ addTransBtn.addEventListener("click", () => {
     let date = transDate.value;
     let category = transCategory.value;
 
-    localStorage.setItem("transType", type);
-    localStorage.setItem("transDesc", desc);
-    localStorage.setItem("transDate", date);
-    localStorage.setItem("transCategory", category);
+   let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-    if(type==="income"){
+    transactions.push({
+        type,
+        desc,
+        amount,
+        date,
+        category
+    });
+
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    if (type === "income") {
         let totalbalance = parseFloat(currentBalance.textContent) + amount;
         let totalincome = parseFloat(incomeBalance.textContent) + amount;
         console.log(totalbalance);
         localStorage.setItem("balance", totalbalance);
         localStorage.setItem("income", totalincome);
-        
-    } else if(type==="expense"){
+
+    } else if (type === "expense") {
         let totalbalance = parseFloat(currentBalance.textContent) - amount;
         let totalexpense = parseFloat(expenseBalance.textContent) + amount;
         console.log(totalbalance);
@@ -135,8 +137,12 @@ addTransBtn.addEventListener("click", () => {
     localStorage.setItem("transactionnumber", (parseInt(localStorage.getItem("transactionnumber")) || 0) + 1);
 
     addTransactionPage.classList.add('hidden');
+    window.location.reload();
+    showDataTask();
     loadData();
+
 });
+
 
 function loadData() {
     console.log("Page Loaded");
@@ -159,9 +165,40 @@ resetData.addEventListener('click', () => {
     localStorage.removeItem("transDate");
     localStorage.removeItem("transCategory");
     loadData();
-    updateChart(0, 0);
+    window.location.reload();
 });
 
+
+function showDataTask() {
+
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    transTask.innerHTML = "";
+
+    transactions.forEach(item => {
+
+        transTask.innerHTML += `
+        <div class="flex justify-between items-center border-gray-100 border-2 p-2 rounded-xl w-full mb-2">
+            <div class="flex gap-2 items-center">
+                <div class="w-10 h-10 bg-blue-100 text-blue-900 flex justify-center items-center rounded-xl">
+                    <i class="fa-solid fa-${item.category}"></i>
+                </div>
+
+                <div>
+                    <div class="text-sm">${item.desc}</div>
+                    <div class="text-xs text-gray-400">${item.date}</div>
+                </div>
+            </div>
+
+            <div class="text-sm text-${item.type === "income" ? "green" : "red"}-500">
+                ${item.type === "income" ? "+" : "-"}$${item.amount}
+            </div>
+        </div>
+        `;
+
+    });
+
+}
 
 
 
