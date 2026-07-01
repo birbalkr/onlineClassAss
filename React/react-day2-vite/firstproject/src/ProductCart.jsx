@@ -1,6 +1,7 @@
 
 
-function ProductCart({ products }) {
+function ProductCart({ products,del }) {
+    // del(products.id);
     return (
         <div className='border-2 border-black p-4 m-4 flex flex-col gap-2 h-[400px]'>
             <img src={products.image} alt="" className="w-4xl h-48"/>
@@ -10,7 +11,7 @@ function ProductCart({ products }) {
                 <div>{products.category}</div>
                 <div>{products.rating}</div>
             </div>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={()=>{console.log(products.id);
+            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={()=>{console.log(products.id); del(products.id)
             }}>Add to Cart</button>
         </div>
     )

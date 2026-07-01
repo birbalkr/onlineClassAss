@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductCart from './ProductCart'
 
 function Count() {
-    let productsData = [
+    const [productdata, setProductdata] = useState([
         {
             "id": 1,
             "title": "Wireless Bluetooth Headphones",
@@ -83,14 +83,20 @@ function Count() {
             "image": "https://picsum.photos/300?random=10",
             "rating": 4.7
         }
-    ]
+    ]);
+
+    const deleteProduct = (id) => {
+        const updatedProducts = productdata.filter((product) => product.id !== id);
+        setProductdata(updatedProducts);
+    }
+    
     return (
         <>
             <div className='text-center text-2xl font-bold'>Product data</div>
 
             <div className='grid grid-cols-5 gap-4'>
-                {productsData.map((product) => (
-                <ProductCart products={product}/>
+                {productdata.map((product) => (
+                <ProductCart products={product} del={deleteProduct}/>
             ))}
             </div>
     </>
