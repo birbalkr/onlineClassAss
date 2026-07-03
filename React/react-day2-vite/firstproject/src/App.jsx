@@ -5,12 +5,12 @@ import InputValue from './inputValue'
 import LoginScreen from './LoginScreen'
 import Signup from './Signup'
 function App() {
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
 
   return (
-   <>
-  {toggle ? <LoginScreen /> : <Signup />}
-   </>
+    <>
+      {toggle ? <LoginScreen setToggle={setToggle} /> : <Signup setToggle={setToggle} />}
+    </>
   )
 }
 

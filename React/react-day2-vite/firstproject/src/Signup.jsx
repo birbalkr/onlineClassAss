@@ -1,4 +1,4 @@
-export default function Signup() {
+export default function Signup({ setToggle }) {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-blue-100 px-4">
             <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
@@ -101,6 +101,7 @@ export default function Signup() {
                 <p className="mt-6 text-center text-sm text-gray-600">
                     Already have an account?{" "}
                     <a
+                    onClick={() => setToggle((prev) => !prev)}
                         href="#"
                         className="font-semibold text-indigo-600 hover:underline"
                     >

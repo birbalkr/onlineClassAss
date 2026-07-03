@@ -1,4 +1,4 @@
-export default function Login() {
+export default function Login({ setToggle }) {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-indigo-100 px-4">
             <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
@@ -51,6 +51,7 @@ export default function Login() {
                     </div>
 
                     <button
+                    
                         type="submit"
                         className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
                     >
@@ -78,7 +79,7 @@ export default function Login() {
                 {/* Footer */}
                 <p className="mt-6 text-center text-sm text-gray-600">
                     Don't have an account?{" "}
-                    <a href="#" className="font-semibold text-blue-600 hover:underline">
+                    <a href="#" className="font-semibold text-blue-600 hover:underline" onClick={() => setToggle((prev) => !prev)}>
                         Sign Up
                     </a>
                 </p>
