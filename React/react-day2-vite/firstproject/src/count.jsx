@@ -94,7 +94,7 @@ function Count() {
         <>
             <div className='text-center text-2xl font-bold'>Product data</div>
 
-            <div className='grid grid-cols-5 gap-4'>
+            <div className='grid sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5'>
                 {productdata.map((product) => (
                 <ProductCart products={product} del={deleteProduct}/>
             ))}
