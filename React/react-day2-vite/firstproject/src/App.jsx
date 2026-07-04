@@ -1,17 +1,22 @@
 
 import { useState } from 'react'
-import Count from './count'
-import InputValue from './inputValue'
-import LoginScreen from './LoginScreen'
 import Signup from './Signup'
+import Usercard from './Usercard'
 function App() {
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(false);
+  const [users, setUsers] = useState([]);
 
   return (
-    <>
-      {toggle ? <LoginScreen setToggle={setToggle} /> : <Signup setToggle={setToggle} />}
-    </>
-  )
-}
+    <div className="bg-gray-300 h-screen">
+      <Signup setUsers={setUsers} setToggle={setToggle} />
+
+      <div className="flex gap-4">
+        {users.map((elem) => (
+          <Usercard user={elem} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default App
