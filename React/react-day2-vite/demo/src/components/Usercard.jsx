@@ -5,6 +5,8 @@ function Usercard({user}) {
             <div className="text-2xl text-center">Usercard</div>
             <div>
                 <img src={user.image} alt="imgae" />
+                <div className="text-xl">Username: {user.username}</div>
+                <div className="text-xl">Email: {user.email}</div>
             </div>
 
         </div>

@@ -10,7 +10,7 @@ function App() {
     <div className="bg-gray-300 h-screen">
       <SignUp setUsers={setUsers} />
 
-      <div className="flex gap-4">
+      <div className="grid grid-cols-4 gap-6">
         {users.map((elem) => (
           <Usercard user={elem} />
         ))}
