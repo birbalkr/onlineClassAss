@@ -35,3 +35,20 @@ fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
     .catch(error => {
         console.log("Error:", error);
     });
+
+
+// card 
+
+let dotoList = document.getElementById("doto");
+let dailyPlanner = document.getElementById("dailyPlanner");
+let dailyGoals = document.getElementById("dailyGoals");
+let pomodoroTimer = document.getElementById("pomodoroTimer");
+let motivationQuote = document.getElementById("motivationQuote");
+
+let dashboard = document.getElementById("dashboard");
+
+dotoList.addEventListener("click", function () {});
+dailyPlanner.addEventListener("click", function () {});
+dailyGoals.addEventListener("click", function () {});
+pomodoroTimer.addEventListener("click", function () {});
+motivationQuote.addEventListener("click", function () {});
