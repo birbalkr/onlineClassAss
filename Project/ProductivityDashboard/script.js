@@ -15,7 +15,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weat
         if (data.weather[0].main == "Clear") {
             weatherImage = "image/clear.png";
         } else if (data.weather[0].main == "Clouds") {
-            weatherImage = "image/clouds.png";
+            weatherImage = "image/cloudy.png";
         } else if (data.weather[0].main == "Rain") {
             weatherImage = "image/rain.png";
         } else if (data.weather[0].main == "Drizzle") {
@@ -74,9 +74,12 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weat
 
 
 
+
+const quote = document.getElementById("quote");
 const quotesApiKey = "urCIhxhjLBgOQgkHbgj9tzWdVw44wYZgSxXkPlNK";
 
-fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
+// fetch("https://api.api-ninjas.com/v2/quoteoftheday?categories=success,wisdom", {
+fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
     headers: {
         "X-Api-Key": quotesApiKey
     }
@@ -84,7 +87,12 @@ fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-
+        quote.innerHTML = `
+        <div>Quote of the day</div>
+        <h2  class="text-gray-600 text-sm font-bold">
+                            ${data[0].quote}
+                        </h2>
+        `;
         console.log("Quote: " + data[0].quote);
         console.log("Author: " + data[0].author);
     })
