@@ -103,15 +103,19 @@ fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
 
 // card 
 
-let dotoList = document.getElementById("doto");
+let todo = document.getElementById("todo");
 let dailyPlanner = document.getElementById("dailyPlanner");
 let dailyGoals = document.getElementById("dailyGoals");
 let pomodoroTimer = document.getElementById("pomodoroTimer");
 let motivationQuote = document.getElementById("motivationQuote");
 
 let dashboard = document.getElementById("dashboard");
+let todolist = document.getElementById("todolist");
 
-dotoList.addEventListener("click", function () { });
+todo.addEventListener("click", function () { 
+    dashboard.classList.add("hidden");
+    todolist.classList.remove("hidden");
+});
 dailyPlanner.addEventListener("click", function () { });
 dailyGoals.addEventListener("click", function () { });
 pomodoroTimer.addEventListener("click", function () { });
