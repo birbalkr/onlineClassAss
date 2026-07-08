@@ -62,7 +62,8 @@
             </div>
 
             <!-- Daily Planner -->
-            <div id="dailyPlannerCard" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="dailyPlannerCard"
+                class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-calendar"></i>
@@ -75,7 +76,7 @@
             </div>
 
             <!-- Daily Goals -->
-            <div id="dailyGoals" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="dailyGoalsCard" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-bullseye"></i>
@@ -88,7 +89,8 @@
             </div>
 
             <!-- Pomodoro Timer -->
-            <div id="pomodoroTimer" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="pomodoroTimerCard"
+                class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-hourglass-start"></i>
@@ -101,7 +103,7 @@
             </div>
 
             <!-- Motivation Quote -->
-            <div id="motivationQuote"
+            <div id="motivationQuoteCard"
                 class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
@@ -118,14 +120,14 @@
     </section>
 
     <!-- TODO List Section -->
-    <section id="todolist" class="flex h-screen justify-items-center bg-[#14213d] hidden">
+    <section id="todolist" class="h-screen  flex justify-items-center bg-[#14213d] hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 Task Log
             </div>
             <div class="flex justify-between items-center">
                 <div class="text-3xl">Todo List</div>
-                <div  class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
+                <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
             </div>
             <div class="flex justify-between items-center gap-8 mt-5 ">
                 <input id="taskInput" type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
@@ -149,6 +151,30 @@
                 <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
             </div>
             <div id="dailyPlannerList" class="mt-5">
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="dailyGoals" class="h-screen flex justify-items-center bg-[#14213d] hidden">
+        <div class="h-full w-1/2 mx-auto">
+            <div class="text-sm mt-12 text-[#fca311]">
+                Hourly
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-3xl">Daily Goals</div>
+                <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div class="flex justify-between items-center gap-8 mt-5 ">
+                <input id="dailyInput" type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
+                <div id="dailyTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#14213d] font-bold">Add</div>
+            </div>
+            <div class="flex flex-col justify-between gap-2 mt-5" >
+                <label for="file">Daily Task progress:</label>
+                <progress id="dailyProgress" value="" max="0" class="overflow-hidden border rounded-xl w-full"> 32% </progress>
+            </div>
+            <div id="dailyTaskList" class="mt-5">
 
             </div>
 

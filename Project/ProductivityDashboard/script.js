@@ -78,26 +78,26 @@ const quote = document.getElementById("quote");
 const quotesApiKey = "urCIhxhjLBgOQgkHbgj9tzWdVw44wYZgSxXkPlNK";
 
 // fetch("https://api.api-ninjas.com/v2/quoteoftheday?categories=success,wisdom", {
-fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
-    headers: {
-        "X-Api-Key": quotesApiKey
-    }
-})
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        quote.innerHTML = `
-        <div>Quote of the day</div>
-        <h2  class="text-gray-600 text-sm font-bold">
-                            ${data[0].quote}
-                        </h2>
-        `;
-        console.log("Quote: " + data[0].quote);
-        console.log("Author: " + data[0].author);
-    })
-    .catch(error => {
-        console.log("Error:", error);
-    });
+// fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
+//     headers: {
+//         "X-Api-Key": quotesApiKey
+//     }
+// })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//         quote.innerHTML = `
+//         <div>Quote of the day</div>
+//         <h2  class="text-gray-600 text-sm font-bold">
+//                             ${data[0].quote}
+//                         </h2>
+//         `;
+//         console.log("Quote: " + data[0].quote);
+//         console.log("Author: " + data[0].author);
+//     })
+//     .catch(error => {
+//         console.log("Error:", error);
+//     });
 
 // Quote API Integration
 
@@ -135,7 +135,7 @@ setInterval(() => {
 
 let todo = document.getElementById("todo");
 let dailyPlannerCard = document.getElementById("dailyPlannerCard");
-let dailyGoals = document.getElementById("dailyGoals");
+let dailyGoalsCard = document.getElementById("dailyGoalsCard");
 let pomodoroTimer = document.getElementById("pomodoroTimer");
 let motivationQuote = document.getElementById("motivationQuote");
 
@@ -147,6 +147,13 @@ let taskInput = document.getElementById("taskInput");
 let taskList = document.getElementById("taskList");
 let dailyPlanner = document.getElementById("dailyPlanner");
 let dailyPlannerList = document.getElementById("dailyPlannerList");
+let dailyGoals = document.getElementById("dailyGoals");
+
+let dailyInput = document.getElementById("dailyInput");
+let dailyTask = document.getElementById("dailyTask");
+let dailyProgress = document.getElementById("dailyProgress");
+let dailyTaskList = document.getElementById("dailyTaskList");
+
 
 
 todo.addEventListener("click", function () {
@@ -248,12 +255,58 @@ taskList.addEventListener("click", function (e) {
     }
 });
 
+dailyGoalsCard.addEventListener("click", function () {
+    dashboard.classList.add("hidden");
+    dailyGoals.classList.remove("hidden");
+});
+let dailyTasknum = 0;
+let dailyTaskDone = 0;
+
+dailyTask.addEventListener("click", function () {
+    let inputData = dailyInput.value.trim();
+    if (inputData !== "") {
+        dailyTaskList.innerHTML += `
+        <div class="flex justify-between items-center gap-4 mb-2 p-2 border rounded-lg bg-[#2a2d37]">
+                    <div class="text-xl"><i class="fa-regular fa-circle-check text-xl done"></i> ${inputData}</div>
+                    <div class="flex gap-4 items-center">
+                        <div class="border py-2 px-4 rounded-2xl del">Delete</div>
+                    </div>
+                </div>
+        `
+        dailyTasknum++;
+    }
+    dailyInput.value = "";
+    dailyProgress.max = dailyTasknum;
+});
+
+dailyTaskList.addEventListener("click", function (e) {
+    if (e.target.classList.contains("done")) {
+        e.target.classList.toggle("fa-solid");
+        e.target.style.color =
+            e.target.classList.contains("fa-solid") ? "limegreen" : "white";
+        dailyProgress.value = dailyTaskDone + 1
+        if(e.target.style.color == "limegreen"){
+            return ;
+        }
+    }
+
+    TODO:
+    if (e.target.classList.contains("del")) {
+        e.target.parentElement.parentElement.remove();
+        dailyTasknum--;
+        dailyProgress.max = dailyTasknum;
+        if(e.target.parentElement.parentElement.querySelector(".done").style.color == "limegreen") {
+            dailyTaskDone--;
+            dailyProgress.value = dailyTaskDone;
+        }
+    }
+});
+
+// let dailyProgress = document.getElementById("dailyProgress");
 
 
-
-dailyGoals.addEventListener("click", function () { });
 pomodoroTimer.addEventListener("click", function () { });
 motivationQuote.addEventListener("click", function () { });
 
 
-// svg-inline--fa fa-star
+TODO: THEME_ADD
