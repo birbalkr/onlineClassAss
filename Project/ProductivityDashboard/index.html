@@ -62,7 +62,7 @@
             </div>
 
             <!-- Daily Planner -->
-            <div id="dailyPlanner" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="dailyPlannerCard" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-calendar"></i>
@@ -117,26 +117,43 @@
         </div>
     </section>
 
-    <section class="flex h-screen justify-items-center bg-[#14213d]">
+    <!-- TODO List Section -->
+    <section id="todolist" class="flex h-screen justify-items-center bg-[#14213d] hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 Task Log
             </div>
             <div class="flex justify-between items-center">
                 <div class="text-3xl">Todo List</div>
-                <div class="border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
+                <div  class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
             </div>
             <div class="flex justify-between items-center gap-8 mt-5 ">
-                <input type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
-                <div id="addTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#14213d] font-bold ">Add</div>
+                <input id="taskInput" type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
+                <div id="addTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#14213d] font-bold">Add</div>
+            </div>
+
+            <div id="taskList" class="mt-5">
+
             </div>
 
         </div>
     </section>
-    <section></section>
-    <section></section>
-    <section></section>
-    <section></section>
+
+    <section id="dailyPlanner" class="flex  justify-items-center bg-[#14213d] hidden">
+        <div class="h-full w-1/2 mx-auto">
+            <div class="text-sm mt-12 text-[#fca311]">
+                Hourly
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-3xl">Daily Planner</div>
+                <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div id="dailyPlannerList" class="mt-5">
+
+            </div>
+
+        </div>
+    </section>
 
 
     <script src="script.js"></script>
