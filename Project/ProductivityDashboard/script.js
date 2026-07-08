@@ -1,6 +1,6 @@
+// Weather API Integration
 let weather = document.getElementById("weather");
 const weatherApiKey = "6adce22b6d217bda16375310950c585e";
-
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weatherApiKey}&units=metric`)
     .then(function (response) {
@@ -72,8 +72,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weat
         console.log("Error: " + error);
     });
 
-
-
+// Quote of the Day API Integration
 
 const quote = document.getElementById("quote");
 const quotesApiKey = "urCIhxhjLBgOQgkHbgj9tzWdVw44wYZgSxXkPlNK";
@@ -100,6 +99,37 @@ fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
         console.log("Error:", error);
     });
 
+// Quote API Integration
+
+// Time and Date
+let timeanddate = document.getElementById("timeanddate");
+setInterval(() => {
+    let now = new Date();
+    let currentTime = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+
+    // Date
+    let currentDate = now.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+    timeanddate.innerHTML = `
+                    <h2 class="text-gray-600 text-xs font-bold ">
+                        ${currentTime}
+                    </h2>
+                    <p class="text-gray-400 text-xs">
+                        ${currentDate}
+                    </p>
+                    `;
+}, 1000);
+
+
 
 // card 
 
@@ -112,7 +142,7 @@ let motivationQuote = document.getElementById("motivationQuote");
 let dashboard = document.getElementById("dashboard");
 let todolist = document.getElementById("todolist");
 
-todo.addEventListener("click", function () { 
+todo.addEventListener("click", function () {
     dashboard.classList.add("hidden");
     todolist.classList.remove("hidden");
 });
