@@ -19,19 +19,19 @@
                 <div id="timeanddate" class="text-right">
 
                 </div>
-                <button class="w-16 h-9 rounded-full bg-[#2a2d37] relative hidden md:block">
-                    <div class="w-7 h-7 rounded-full bg-[#d8a63b] absolute top-1 left-1"></div>
+                <button id="theme" class="w-16 h-9 rounded-full bg-[#2a2d37] relative hidden md:block">
+                    <div id="themeon" class="w-7 h-7 rounded-full bg-[#d8a63b] absolute top-1 lightTheme theme left-1"></div>
                 </button>
             </div>
         </div>
 
         <!-- weather -->
         <div class="grid gap-2 sm:grid-cols-2 sm:mx-22 mx-12">
-            <div id="weather" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="weather" class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
             </div>
 
             <!-- daliy Motivation Quote -->
-            <div class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
 
                 <div class="flex items-center gap-4">
                     <i class="fa-solid fa-quote-left"></i>
@@ -49,7 +49,7 @@
         <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-12 sm:mx-32">
 
             <!-- todo list -->
-            <div id="todo" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="todo" class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-list"></i>
@@ -63,7 +63,7 @@
 
             <!-- Daily Planner -->
             <div id="dailyPlannerCard"
-                class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+                class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-calendar"></i>
@@ -76,7 +76,7 @@
             </div>
 
             <!-- Daily Goals -->
-            <div id="dailyGoalsCard" class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+            <div id="dailyGoalsCard" class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-bullseye"></i>
@@ -90,7 +90,7 @@
 
             <!-- Pomodoro Timer -->
             <div id="pomodoroTimerCard"
-                class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+                class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-hourglass-start"></i>
@@ -104,7 +104,7 @@
 
             <!-- Motivation Quote -->
             <div id="motivationQuoteCard"
-                class="flex justify-between items-center mt-10 rounded-lg bg-[#14213d] p-5 w-full">
+                class="flex justify-between items-center mt-10 rounded-lg lightTheme theme p-5 w-full">
                 <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
                         <i class="fa-solid fa-quote-left"></i>
@@ -120,7 +120,7 @@
     </section>
 
     <!-- TODO List Section -->
-    <section id="todolist" class="h-screen  flex justify-items-center bg-[#14213d] hidden">
+    <section id="todolist" class="h-screen  flex justify-items-center lightTheme theme hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 Task Log
@@ -131,7 +131,7 @@
             </div>
             <div class="flex justify-between items-center gap-8 mt-5 ">
                 <input id="taskInput" type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
-                <div id="addTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#14213d] font-bold">Add</div>
+                <div id="addTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#162a53] font-bold">Add</div>
             </div>
 
             <div id="taskList" class="mt-5">
@@ -143,7 +143,7 @@
 
     <!-- daily Planner -->
 
-    <section id="dailyPlanner" class="flex  justify-items-center bg-[#14213d] hidden">
+    <section id="dailyPlanner" class="flex  justify-items-center lightTheme theme hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 Hourly
@@ -160,7 +160,7 @@
     </section>
 
     <!-- daily goals -->
-    <section id="dailyGoals" class="h-screen flex justify-items-center bg-[#14213d] hidden">
+    <section id="dailyGoals" class="h-screen flex justify-items-center lightTheme theme hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 Today
@@ -171,7 +171,7 @@
             </div>
             <div class="flex justify-between items-center gap-8 mt-5 ">
                 <input id="dailyInput" type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
-                <div id="dailyTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#14213d] font-bold">Add</div>
+                <div id="dailyTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#162a53] font-bold">Add</div>
             </div>
             <div class="flex flex-col justify-between gap-2 mt-5">
                 <label for="file">Daily Task progress:</label>
@@ -186,7 +186,7 @@
     </section>
 
     <!-- pomodoroTimer -->
-    <section id="pomodoroTimer" class="h-screen flex justify-items-center bg-[#14213d] hidden">
+    <section id="pomodoroTimer" class="h-screen flex justify-items-center lightTheme theme hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 Focus Session
@@ -237,7 +237,7 @@
         </div>
     </section>
 
-    <section id="motivationQuote" id="dailyGoals" class="h-screen flex justify-items-center bg-[#14213d] hidden">
+    <section id="motivationQuote" id="dailyGoals" class="h-screen flex justify-items-center lightTheme theme hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
                 A Word of Inspiration
@@ -246,6 +246,8 @@
                 <div class="text-3xl">Motivation </div>
                 <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
             </div>
+
+            <div id="quoteUpdate"></div>
         </div>
     </section>
 

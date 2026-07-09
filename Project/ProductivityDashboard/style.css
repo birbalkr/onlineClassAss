@@ -1,16 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: #162a53;
     color: #e5e5e5;
     margin: 0;
     padding: 0;
 }
 
+.darkTheme{
+    background-color: #14213d;
+    color: #e5e5e5;
+}
 
+.lightTheme{
+    background-color: #162a53;
+    color: #000000;
+}
 
-/* 
-#000000  //black
-#14213d  //dark blue
-#fca311 //orange
-#e5e5e5 //gray
-#ffffff //white */

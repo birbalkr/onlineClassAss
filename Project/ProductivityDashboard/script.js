@@ -1,3 +1,35 @@
+const images = [
+    "image/a.jpg",
+    "image/c.jpg",
+    "image/d.jpg",
+    "image/e.jpg"
+];
+let index = 0;
+function changeBackground() {
+    document.body.style.backgroundImage = `url(${images[index]})`;
+    document.body.style.backgroundSize = "cover";
+    index++;
+
+    if (index == images.length) {
+        index = 0;
+    }
+}
+changeBackground();
+setInterval(changeBackground, 10000);
+
+let themeButton = document.getElementById("theme");
+let themeOn = document.getElementById("themeon");
+let allthem = document.querySelectorAll("lightTheme");
+
+themeButton.addEventListener("click", function () {
+    themeOn.classList.toggle("left-1");
+    themeOn.classList.toggle("right-1");
+
+    for (let i = 0; i < allthem.length; i++) {
+        allthem[i].classList.add("darkTheme");
+    }
+})
+
 // Weather API Integration
 let weather = document.getElementById("weather");
 const weatherApiKey = "6adce22b6d217bda16375310950c585e";
@@ -78,26 +110,26 @@ const quote = document.getElementById("quote");
 const quotesApiKey = "urCIhxhjLBgOQgkHbgj9tzWdVw44wYZgSxXkPlNK";
 
 // fetch("https://api.api-ninjas.com/v2/quoteoftheday?categories=success,wisdom", {
-// fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
-//     headers: {
-//         "X-Api-Key": quotesApiKey
-//     }
-// })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         quote.innerHTML = `
-//         <div>Quote of the day</div>
-//         <h2  class="text-gray-600 text-sm font-bold">
-//                             ${data[0].quote}
-//                         </h2>
-//         `;
-//         console.log("Quote: " + data[0].quote);
-//         console.log("Author: " + data[0].author);
-//     })
-//     .catch(error => {
-//         console.log("Error:", error);
-//     });
+fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
+    headers: {
+        "X-Api-Key": quotesApiKey
+    }
+})
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        quote.innerHTML = `
+        <div>Quote of the day</div>
+        <h2  class="text-gray-600 text-sm font-bold">
+                            ${data[0].quote}
+                        </h2>
+        `;
+        console.log("Quote: " + data[0].quote);
+        console.log("Author: " + data[0].author);
+    })
+    .catch(error => {
+        console.log("Error:", error);
+    });
 
 // Quote API Integration
 
@@ -120,10 +152,10 @@ setInterval(() => {
         day: "numeric"
     });
     timeanddate.innerHTML = `
-                    <h2 class="text-gray-600 text-xs font-bold ">
+                    <h2 class="text-black text-lg font-bold ">
                         ${currentTime}
                     </h2>
-                    <p class="text-gray-400 text-xs">
+                    <p class="text-[#fca311] text-lg">
                         ${currentDate}
                     </p>
                     `;
@@ -156,15 +188,6 @@ let dailyProgress = document.getElementById("dailyProgress");
 let dailyTaskList = document.getElementById("dailyTaskList");
 
 
-pomodoroTimerCard.addEventListener("click", function () {
-    dashboard.classList.add("hidden");
-    pomodoroTimer.classList.remove("hidden");
-});
-
-motivationQuoteCard.addEventListener("click", function () {
-    dashboard.classList.add("hidden");
-    motivationQuote.classList.remove("hidden");
-});
 
 
 
@@ -178,6 +201,9 @@ for (let i = 0; i < closeX.length; i++) {
         dashboard.classList.remove("hidden");
         todolist.classList.add("hidden");
         dailyPlanner.classList.add("hidden");
+        dailyGoals.classList.add("hidden");
+        pomodoroTimer.classList.add("hidden");
+        motivationQuote.classList.add("hidden");
     });
 }
 
@@ -311,4 +337,106 @@ dailyTaskList.addEventListener("click", function (e) {
             dailyProgress.value = dailyTaskDone;
         }
     }
+});
+
+
+pomodoroTimerCard.addEventListener("click", function () {
+    dashboard.classList.add("hidden");
+    pomodoroTimer.classList.remove("hidden");
+});
+
+let timer = document.getElementById("timer");
+let start = document.getElementById("start");
+let pause = document.getElementById("pause");
+let reset = document.getElementById("reset");
+
+let minutes = 25;
+let seconds = 0;
+
+let interval;
+
+// Show timer
+function showTimer() {
+    let m = String(minutes).padStart(2, "0");
+    let s = String(seconds).padStart(2, "0");
+
+    timer.textContent = m + ":" + s;
+}
+
+showTimer();
+
+// Start Button
+start.addEventListener("click", function () {
+
+    if (interval) {
+        return;
+    }
+    interval = setInterval(function () {
+        if (seconds == 0) {
+            if (minutes == 0) {
+                clearInterval(interval);
+                interval = null;
+                alert("🎉 Time's Up!");
+                return;
+            }
+            minutes--;
+            seconds = 59;
+        } else {
+            seconds--;
+        }
+        showTimer();
+    }, 1000);
+});
+pause.addEventListener("click", function () {
+    clearInterval(interval);
+    interval = null;
+});
+reset.addEventListener("click", function () {
+    clearInterval(interval);
+    interval = null;
+    minutes = 25;
+    seconds = 0;
+    showTimer();
+});
+
+motivationQuoteCard.addEventListener("click", function () {
+    dashboard.classList.add("hidden");
+    motivationQuote.classList.remove("hidden");
+});
+
+
+let quoteUpdate = document.getElementById("quoteUpdate");
+
+function updateQuote() {
+
+    fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
+        headers: {
+            "X-Api-Key": quotesApiKey
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            quoteUpdate.innerHTML = `
+        <div>Random Quote</div>
+        
+        <h2  class="text-white text-xl font-bold">
+                            ${data[0].quote}
+                        </h2>
+        <div class="text-gray-400 text-sm flex flex-col gap-2">
+        <span>${"Author: " + data[0].author}</span>
+<span>${"Category: " + data[0].category}</span>
+    <div class="border py-2 px-3 w-25 rounded-2xl  cursor-pointer" onclick="updateQuote()">Update</div>
+</div>
+
+        `;
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
+
+}
+
+window.addEventListener("load", function () {
+    updateQuote();
 });
