@@ -136,8 +136,8 @@ setInterval(() => {
 let todo = document.getElementById("todo");
 let dailyPlannerCard = document.getElementById("dailyPlannerCard");
 let dailyGoalsCard = document.getElementById("dailyGoalsCard");
-let pomodoroTimer = document.getElementById("pomodoroTimer");
-let motivationQuote = document.getElementById("motivationQuote");
+let pomodoroTimerCard = document.getElementById("pomodoroTimerCard");
+let motivationQuoteCard = document.getElementById("motivationQuoteCard");
 
 let dashboard = document.getElementById("dashboard");
 let todolist = document.getElementById("todolist");
@@ -148,11 +148,23 @@ let taskList = document.getElementById("taskList");
 let dailyPlanner = document.getElementById("dailyPlanner");
 let dailyPlannerList = document.getElementById("dailyPlannerList");
 let dailyGoals = document.getElementById("dailyGoals");
+let pomodoroTimer = document.getElementById("pomodoroTimer");
 
 let dailyInput = document.getElementById("dailyInput");
 let dailyTask = document.getElementById("dailyTask");
 let dailyProgress = document.getElementById("dailyProgress");
 let dailyTaskList = document.getElementById("dailyTaskList");
+
+
+pomodoroTimerCard.addEventListener("click", function () {
+    dashboard.classList.add("hidden");
+    pomodoroTimer.classList.remove("hidden");
+});
+
+motivationQuoteCard.addEventListener("click", function () {
+    dashboard.classList.add("hidden");
+    motivationQuote.classList.remove("hidden");
+});
 
 
 
@@ -285,28 +297,18 @@ dailyTaskList.addEventListener("click", function (e) {
         e.target.style.color =
             e.target.classList.contains("fa-solid") ? "limegreen" : "white";
         dailyProgress.value = dailyTaskDone + 1
-        if(e.target.style.color == "limegreen"){
-            return ;
+        if (e.target.style.color == "limegreen") {
+            return;
         }
     }
 
-    TODO:
     if (e.target.classList.contains("del")) {
         e.target.parentElement.parentElement.remove();
         dailyTasknum--;
         dailyProgress.max = dailyTasknum;
-        if(e.target.parentElement.parentElement.querySelector(".done").style.color == "limegreen") {
+        if (e.target.parentElement.parentElement.querySelector(".done").style.color == "limegreen") {
             dailyTaskDone--;
             dailyProgress.value = dailyTaskDone;
         }
     }
 });
-
-// let dailyProgress = document.getElementById("dailyProgress");
-
-
-pomodoroTimer.addEventListener("click", function () { });
-motivationQuote.addEventListener("click", function () { });
-
-
-TODO: THEME_ADD

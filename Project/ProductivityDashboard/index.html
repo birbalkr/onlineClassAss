@@ -141,6 +141,8 @@
         </div>
     </section>
 
+    <!-- daily Planner -->
+
     <section id="dailyPlanner" class="flex  justify-items-center bg-[#14213d] hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
@@ -157,10 +159,11 @@
         </div>
     </section>
 
+    <!-- daily goals -->
     <section id="dailyGoals" class="h-screen flex justify-items-center bg-[#14213d] hidden">
         <div class="h-full w-1/2 mx-auto">
             <div class="text-sm mt-12 text-[#fca311]">
-                Hourly
+                Today
             </div>
             <div class="flex justify-between items-center">
                 <div class="text-3xl">Daily Goals</div>
@@ -170,9 +173,10 @@
                 <input id="dailyInput" type="text" class="w-full rounded-lg p-2 border" placeholder="Add a new task">
                 <div id="dailyTask" class="px-8 py-2 bg-[#fca311] rounded-2xl text-[#14213d] font-bold">Add</div>
             </div>
-            <div class="flex flex-col justify-between gap-2 mt-5" >
+            <div class="flex flex-col justify-between gap-2 mt-5">
                 <label for="file">Daily Task progress:</label>
-                <progress id="dailyProgress" value="" max="0" class="overflow-hidden border rounded-xl w-full"> 32% </progress>
+                <progress id="dailyProgress" value="" max="0" class="overflow-hidden border rounded-xl w-full"> 32%
+                </progress>
             </div>
             <div id="dailyTaskList" class="mt-5">
 
@@ -181,6 +185,69 @@
         </div>
     </section>
 
+    <!-- pomodoroTimer -->
+    <section id="pomodoroTimer" class="h-screen flex justify-items-center bg-[#14213d] hidden">
+        <div class="h-full w-1/2 mx-auto">
+            <div class="text-sm mt-12 text-[#fca311]">
+                Focus Session
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-3xl">⏳ Focus Timer</div>
+                <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div>
+
+                <p class="text-center text-slate-400 mt-2">
+                    Stay focused and productive
+                </p>
+
+                <!-- Timer -->
+                <div class="flex justify-center my-8">
+                    <div
+                        class="w-56 h-56 rounded-full border-8 border-cyan-400 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+
+                        <span id="timer" class="text-6xl font-bold text-white tracking-wider">
+                            25:00
+                        </span>
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="grid grid-cols-3 gap-4">
+
+                    <button id="start"
+                        class="py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold transition">
+                        ▶ Start
+                    </button>
+
+                    <button id="pause"
+                        class="py-3 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white font-semibold transition">
+                        ⏸ Pause
+                    </button>
+
+                    <button id="reset"
+                        class="py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold transition">
+                        ↺ Reset
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="motivationQuote" id="dailyGoals" class="h-screen flex justify-items-center bg-[#14213d] hidden">
+        <div class="h-full w-1/2 mx-auto">
+            <div class="text-sm mt-12 text-[#fca311]">
+                A Word of Inspiration
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-3xl">Motivation </div>
+                <div class="closeX border rounded-full text-md p-2"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
