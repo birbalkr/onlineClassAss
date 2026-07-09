@@ -297,48 +297,89 @@ dailyGoalsCard.addEventListener("click", function () {
     dashboard.classList.add("hidden");
     dailyGoals.classList.remove("hidden");
 });
+
 let dailyTasknum = 0;
 let dailyTaskDone = 0;
+let dailyTasks = JSON.parse(localStorage.getItem("dailyTasks")) || [];
+
+function saveGoals() {
+    localStorage.setItem("dailyTasks", JSON.stringify(dailyTasks));
+}
+
+function GoalsTasks() {
+    dailyTaskList.innerHTML = "";
+    dailyTasknum = dailyTasks.length;
+    dailyTaskDone = 0;
+    dailyTasks.forEach(function (task, index) {
+        if (task.done) {
+            dailyTaskDone++;
+        }
+        dailyTaskList.innerHTML += `
+        <div class="flex justify-between items-center gap-4 mb-2 p-2 border rounded-lg bg-[#2a2d37]">
+            <div class="text-xl">
+                <i
+                    class="fa-${task.done ? "solid" : "regular"} fa-circle-check text-xl done"
+                    data-index="${index}"
+                    style="color:${task.done ? "limegreen" : "white"}"
+                ></i>
+                ${task.text}
+            </div>
+            <div class="flex gap-4 items-center">
+                <div
+                    class="border py-2 px-4 rounded-2xl del"
+                    data-index="${index}"
+                >
+                    Delete
+                </div>
+            </div>
+        </div>
+        `;
+    });
+    dailyProgress.max = dailyTasknum;
+    dailyProgress.value = dailyTaskDone;
+}
+
+GoalsTasks();
 
 dailyTask.addEventListener("click", function () {
     let inputData = dailyInput.value.trim();
     if (inputData !== "") {
-        dailyTaskList.innerHTML += `
-        <div class="flex justify-between items-center gap-4 mb-2 p-2 border rounded-lg bg-[#2a2d37]">
-                    <div class="text-xl"><i class="fa-regular fa-circle-check text-xl done"></i> ${inputData}</div>
-                    <div class="flex gap-4 items-center">
-                        <div class="border py-2 px-4 rounded-2xl del">Delete</div>
-                    </div>
-                </div>
-        `
-        dailyTasknum++;
+        dailyTasks.push({
+            text: inputData,
+            done: false
+        });
+        saveGoals();
+        GoalsTasks();
+        dailyInput.value = "";
     }
-    dailyInput.value = "";
-    dailyProgress.max = dailyTasknum;
 });
+
 
 dailyTaskList.addEventListener("click", function (e) {
+
     if (e.target.classList.contains("done")) {
-        e.target.classList.toggle("fa-solid");
-        e.target.style.color =
-            e.target.classList.contains("fa-solid") ? "limegreen" : "white";
-        dailyProgress.value = dailyTaskDone + 1
-        if (e.target.style.color == "limegreen") {
-            return;
-        }
+        let index = e.target.dataset.index;
+        dailyTasks[index].done = !dailyTasks[index].done;
+        saveGoals();
+        GoalsTasks();
     }
 
+    // Delete
     if (e.target.classList.contains("del")) {
-        e.target.parentElement.parentElement.remove();
-        dailyTasknum--;
-        dailyProgress.max = dailyTasknum;
-        if (e.target.parentElement.parentElement.querySelector(".done").style.color == "limegreen") {
-            dailyTaskDone--;
-            dailyProgress.value = dailyTaskDone;
-        }
+
+        let index = e.target.dataset.index;
+
+        dailyTasks.splice(index, 1);
+
+        saveGoals();
+        GoalsTasks();
     }
+
 });
 
+
+
+// 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 pomodoroTimerCard.addEventListener("click", function () {
     dashboard.classList.add("hidden");
