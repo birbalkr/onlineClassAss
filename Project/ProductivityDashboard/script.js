@@ -28,7 +28,7 @@ themeButton.addEventListener("click", function () {
         element.classList.toggle("darkTheme");
         element.classList.toggle("lightTheme");
     }
-)
+    )
 })
 
 // Weather API Integration
@@ -215,10 +215,9 @@ dailyPlannerCard.addEventListener("click", function () {
 
 const slots = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM'];
 
-let plannerData = {
-    '09:00': 'Team standup',
-    '11:00': 'Design review'
-};
+function saveTask(time, value) {
+    localStorage.setItem(time, value);
+}
 
 function renderPlanner() {
     const rows = slots.map(s => `
@@ -230,9 +229,9 @@ function renderPlanner() {
     <input
         type="text"
         placeholder="Nothing planned"
-        value=""
+        value="${localStorage.getItem(s) || ''}"
         class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none"
-        onchange="plannerData['${s}']=this.value">
+        onchange="saveTask('${s}', this.value)">
 </div>
     `).join("");
 
@@ -420,7 +419,7 @@ let quoteUpdate = document.getElementById("quoteUpdate");
 //             console.log(data);
 //             quoteUpdate.innerHTML = `
 //         <div>Random Quote</div>
-        
+
 //         <h2  class="text-white text-xl font-bold">
 //                             ${data[0].quote}
 //                         </h2>
