@@ -17,6 +17,8 @@ function changeBackground() {
 changeBackground();
 setInterval(changeBackground, 10000);
 
+// 000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
 let themeButton = document.getElementById("themebtn");
 let themeOn = document.getElementById("themeon");
 let allthem = document.querySelectorAll(".theme");
@@ -165,13 +167,11 @@ setInterval(() => {
 
 
 // card 
-
 let todo = document.getElementById("todo");
 let dailyPlannerCard = document.getElementById("dailyPlannerCard");
 let dailyGoalsCard = document.getElementById("dailyGoalsCard");
 let pomodoroTimerCard = document.getElementById("pomodoroTimerCard");
 let motivationQuoteCard = document.getElementById("motivationQuoteCard");
-
 let dashboard = document.getElementById("dashboard");
 let todolist = document.getElementById("todolist");
 let closeX = document.querySelectorAll(".closeX");
@@ -182,15 +182,10 @@ let dailyPlanner = document.getElementById("dailyPlanner");
 let dailyPlannerList = document.getElementById("dailyPlannerList");
 let dailyGoals = document.getElementById("dailyGoals");
 let pomodoroTimer = document.getElementById("pomodoroTimer");
-
 let dailyInput = document.getElementById("dailyInput");
 let dailyTask = document.getElementById("dailyTask");
 let dailyProgress = document.getElementById("dailyProgress");
 let dailyTaskList = document.getElementById("dailyTaskList");
-
-
-
-
 
 todo.addEventListener("click", function () {
     dashboard.classList.add("hidden");
@@ -207,6 +202,8 @@ for (let i = 0; i < closeX.length; i++) {
         motivationQuote.classList.add("hidden");
     });
 }
+
+// 000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 dailyPlannerCard.addEventListener("click", function () {
     dashboard.classList.add("hidden");
@@ -241,20 +238,53 @@ function renderPlanner() {
 }
 renderPlanner();
 
+// 00000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+function renderTasks() {
+    taskList.innerHTML = "";
+    tasks.forEach(function (task, index) {
+        taskList.innerHTML += `
+        <div class="flex justify-between items-center gap-4 mb-2 p-2 border rounded-lg bg-[#2a2d37]">
+            <div class="text-xl">${task.text}</div>
+            <div class="flex gap-4 items-center">
+                <i
+                    class="fa-${task.important ? "solid" : "regular"} fa-star text-xl imp"
+                    data-index="${index}"
+                    style="color:${task.important ? "gold" : "white"}"
+                ></i>
+                <i
+                    class="fa-${task.done ? "solid" : "regular"} fa-circle-check text-xl done"
+                    data-index="${index}"
+                    style="color:${task.done ? "limegreen" : "white"}"
+                ></i>
+
+                <div
+                    class="border py-2 px-4 rounded-2xl del"
+                    data-index="${index}"
+                >
+                    Delete
+                </div>
+            </div>
+        </div>
+        `;
+    });
+}
+renderTasks();
 addTask.addEventListener("click", function () {
     let taskValue = taskInput.value.trim();
     if (taskValue !== "") {
-        taskList.innerHTML += `
-        <div class="flex justify-between items-center gap-4 mb-2 p-2 border rounded-lg bg-[#2a2d37]">
-                    <div class="text-xl">${taskValue}</div>
-                    <div class="flex gap-4 items-center">
-                        <i class="fa-regular fa-star text-xl imp"></i>
-                        <i class="fa-regular fa-circle-check text-xl done"></i>
-                        <div class="border py-2 px-4 rounded-2xl del">Delete</div>
-                    </div>
-                </div>
-        `
+        tasks.push({
+            text: taskValue,
+            important: false,
+            done: false
+        });
+        saveTasks();
+        renderTasks();
     }
     taskInput.value = "";
 });
@@ -262,36 +292,36 @@ addTask.addEventListener("click", function () {
 taskList.addEventListener("click", function (e) {
 
     if (e.target.classList.contains("imp")) {
-        if (e.target.classList.contains("fa-star")) {
-            e.target.classList.remove("fa-star");
-            e.target.classList.add("fa-solid");
-            e.target.style.color = "gold";
-        }
+        let index = e.target.dataset.index;
+        tasks[index].important = !tasks[index].important;
+        saveTasks();
+        renderTasks();
     }
-
     if (e.target.classList.contains("done")) {
-        e.target.classList.toggle("fa-solid");
-        e.target.style.color =
-            e.target.classList.contains("fa-solid") ? "limegreen" : "white";
+        let index = e.target.dataset.index;
+        tasks[index].done = !tasks[index].done;
+        saveTasks();
+        renderTasks();
     }
-
     if (e.target.classList.contains("del")) {
-        let doneIcon = e.target.parentElement.querySelector(".imp");
-        if (doneIcon.style.color !== "gold") {
-            e.target.parentElement.parentElement.remove();
+    let index = e.target.dataset.index;
+        if (!tasks[index].important) {
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
         } else {
             if (confirm("An important task! Do you want to delete it?")) {
-                e.target.parentElement.parentElement.remove();
-            }
-            else {
+                tasks.splice(index, 1);
+                saveTasks();
+                renderTasks();
+            } else {
                 alert("Task not deleted.");
             }
-
-
-
         }
     }
 });
+
+// 0000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 dailyGoalsCard.addEventListener("click", function () {
     dashboard.classList.add("hidden");
@@ -377,8 +407,6 @@ dailyTaskList.addEventListener("click", function (e) {
 
 });
 
-
-
 // 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 pomodoroTimerCard.addEventListener("click", function () {
@@ -393,20 +421,15 @@ let reset = document.getElementById("reset");
 
 let minutes = 25;
 let seconds = 0;
-
 let interval;
 
-// Show timer
 function showTimer() {
     let m = String(minutes).padStart(2, "0");
     let s = String(seconds).padStart(2, "0");
-
     timer.textContent = m + ":" + s;
 }
 
 showTimer();
-
-// Start Button
 start.addEventListener("click", function () {
 
     if (interval) {
@@ -445,6 +468,7 @@ motivationQuoteCard.addEventListener("click", function () {
     motivationQuote.classList.remove("hidden");
 });
 
+// 00000000000000000000000000000000000000000000000000000000000000000000000
 
 let quoteUpdate = document.getElementById("quoteUpdate");
 
