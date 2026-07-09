@@ -17,17 +17,18 @@ function changeBackground() {
 changeBackground();
 setInterval(changeBackground, 10000);
 
-let themeButton = document.getElementById("theme");
+let themeButton = document.getElementById("themebtn");
 let themeOn = document.getElementById("themeon");
-let allthem = document.querySelectorAll("lightTheme");
+let allthem = document.querySelectorAll(".theme");
 
 themeButton.addEventListener("click", function () {
     themeOn.classList.toggle("left-1");
     themeOn.classList.toggle("right-1");
-
-    for (let i = 0; i < allthem.length; i++) {
-        allthem[i].classList.add("darkTheme");
+    allthem.forEach(function (element) {
+        element.classList.toggle("darkTheme");
+        element.classList.toggle("lightTheme");
     }
+)
 })
 
 // Weather API Integration
@@ -72,23 +73,23 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weat
                     <img src="${weatherImage}" alt="weather" class="w-16 h-16">
 
                     <div>
-                        <h2 class="text-gray-600 text-sm font-bold">
+                        <h2 class="text-white text-md font-bold">
                             ${data.main.temp + "°C"}
                         </h2>
 
-                        <p class="text-gray-400 text-sm">
+                        <p class=" text-lg font-bold">
                             ${data.name}
                         </p>
                     </div>
 
                     <div>
-                        <div class="text-gray-400 text-sm">
-                            <div>Weather: <span>${data.weather[0].main}</sapn> </div>
+                        <div class=" text-md font-bold">
+                            <div >Weather: <span class="text-[#e5e5e5]">${data.weather[0].main}</sapn> </div>
                         </div>
                     </div>
                     <div>
-                        <div class="text-gray-400 text-sm">
-                            <div>Humidity: <span>${data.main.humidity + "%"}</sapn> </div>
+                        <div class="font-bold text-md">
+                            <div>Humidity: <span class="text-[#e5e5e5]">${data.main.humidity + "%"}</sapn> </div>
                         </div>
                     </div>
 
@@ -109,31 +110,31 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weat
 const quote = document.getElementById("quote");
 const quotesApiKey = "urCIhxhjLBgOQgkHbgj9tzWdVw44wYZgSxXkPlNK";
 
-// fetch("https://api.api-ninjas.com/v2/quoteoftheday?categories=success,wisdom", {
-fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
-    headers: {
-        "X-Api-Key": quotesApiKey
-    }
-})
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        quote.innerHTML = `
-        <div>Quote of the day</div>
-        <h2  class="text-gray-600 text-sm font-bold">
-                            ${data[0].quote}
-                        </h2>
-        `;
-        console.log("Quote: " + data[0].quote);
-        console.log("Author: " + data[0].author);
-    })
-    .catch(error => {
-        console.log("Error:", error);
-    });
+// fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
+//     headers: {
+//         "X-Api-Key": quotesApiKey
+//     }
+// })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//         quote.innerHTML = `
+//         <div>Quote of the day</div>
+//         <h2  class="text-gray-600 text-sm font-bold">
+//                             ${data[0].quote}
+//                         </h2>
+//         `;
+//         console.log("Quote: " + data[0].quote);
+//         console.log("Author: " + data[0].author);
+//     })
+//     .catch(error => {
+//         console.log("Error:", error);
+//     });
 
 // Quote API Integration
 
 // Time and Date
+
 let timeanddate = document.getElementById("timeanddate");
 setInterval(() => {
     let now = new Date();
@@ -407,35 +408,35 @@ motivationQuoteCard.addEventListener("click", function () {
 
 let quoteUpdate = document.getElementById("quoteUpdate");
 
-function updateQuote() {
+// function updateQuote() {
 
-    fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
-        headers: {
-            "X-Api-Key": quotesApiKey
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            quoteUpdate.innerHTML = `
-        <div>Random Quote</div>
+//     fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
+//         headers: {
+//             "X-Api-Key": quotesApiKey
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log(data);
+//             quoteUpdate.innerHTML = `
+//         <div>Random Quote</div>
         
-        <h2  class="text-white text-xl font-bold">
-                            ${data[0].quote}
-                        </h2>
-        <div class="text-gray-400 text-sm flex flex-col gap-2">
-        <span>${"Author: " + data[0].author}</span>
-<span>${"Category: " + data[0].category}</span>
-    <div class="border py-2 px-3 w-25 rounded-2xl  cursor-pointer" onclick="updateQuote()">Update</div>
-</div>
+//         <h2  class="text-white text-xl font-bold">
+//                             ${data[0].quote}
+//                         </h2>
+//         <div class="text-gray-400 text-sm flex flex-col gap-2">
+//         <span>${"Author: " + data[0].author}</span>
+// <span>${"Category: " + data[0].category}</span>
+//     <div class="border py-2 px-3 w-25 rounded-2xl  cursor-pointer" onclick="updateQuote()">Update</div>
+// </div>
 
-        `;
-        })
-        .catch(error => {
-            console.log("Error:", error);
-        });
+//         `;
+//         })
+//         .catch(error => {
+//             console.log("Error:", error);
+//         });
 
-}
+// }
 
 window.addEventListener("load", function () {
     updateQuote();
