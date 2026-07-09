@@ -112,30 +112,27 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Jamshedpur&appid=${weat
 const quote = document.getElementById("quote");
 const quotesApiKey = "urCIhxhjLBgOQgkHbgj9tzWdVw44wYZgSxXkPlNK";
 
-// fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
-//     headers: {
-//         "X-Api-Key": quotesApiKey
-//     }
-// })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         quote.innerHTML = `
-//         <div>Quote of the day</div>
-//         <h2  class="text-gray-600 text-sm font-bold">
-//                             ${data[0].quote}
-//                         </h2>
-//         `;
-//         console.log("Quote: " + data[0].quote);
-//         console.log("Author: " + data[0].author);
-//     })
-//     .catch(error => {
-//         console.log("Error:", error);
-//     });
-
-// Quote API Integration
-
-// Time and Date
+fetch("https://api.api-ninjas.com/v2/quoteoftheday", {
+    headers: {
+        "X-Api-Key": quotesApiKey
+    }
+})
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        quote.innerHTML = `
+        <div>Quote of the day</div>
+        <h2  class="text-white text-sm font-bold">
+                            ${data[0].quote}
+                        </h2>
+        `;
+        console.log("Quote: " + data[0].quote);
+        console.log("Author: " + data[0].author);
+    })
+    .catch(error => {
+        console.log("Error:", error);
+    });
+// 000000000000000000000000000000000000000000000000000000000000000000000000
 
 let timeanddate = document.getElementById("timeanddate");
 setInterval(() => {
@@ -472,35 +469,35 @@ motivationQuoteCard.addEventListener("click", function () {
 
 let quoteUpdate = document.getElementById("quoteUpdate");
 
-// function updateQuote() {
+function updateQuote() {
 
-//     fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
-//         headers: {
-//             "X-Api-Key": quotesApiKey
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data);
-//             quoteUpdate.innerHTML = `
-//         <div>Random Quote</div>
+    fetch("https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom", {
+        headers: {
+            "X-Api-Key": quotesApiKey
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            quoteUpdate.innerHTML = `
+        <div>Random Quote</div>
 
-//         <h2  class="text-white text-xl font-bold">
-//                             ${data[0].quote}
-//                         </h2>
-//         <div class="text-gray-400 text-sm flex flex-col gap-2">
-//         <span>${"Author: " + data[0].author}</span>
-// <span>${"Category: " + data[0].category}</span>
-//     <div class="border py-2 px-3 w-25 rounded-2xl  cursor-pointer" onclick="updateQuote()">Update</div>
-// </div>
+        <h2  class="text-white text-xl font-bold">
+                            ${data[0].quote}
+                        </h2>
+        <div class="text-gray-900 text-sm flex flex-col gap-2">
+        <span>${"Author: " + data[0].author}</span>
+<span>${"Category: " + data[0].categories[0]}</span>
+    <div class="border py-2 px-3 w-25 rounded-2xl  cursor-pointer" onclick="updateQuote()">Update</div>
+</div>
 
-//         `;
-//         })
-//         .catch(error => {
-//             console.log("Error:", error);
-//         });
+        `;
+        })
+        .catch(error => {
+            console.log("Error:", error);
+        });
 
-// }
+}
 
 window.addEventListener("load", function () {
     updateQuote();
