@@ -1,6 +1,7 @@
 import React from 'react'
 
-function UserCard({ users }) {
+function UserCard({ users, del, ind }) {
+
 
     return (
 
@@ -15,7 +16,8 @@ function UserCard({ users }) {
             </div>
             <div className='flex gap-2 justify-end'>
                 <button className='py-2 px-3 bg-blue-600 rounded-xl'>Update</button>
-                <button className='py-2 px-3 bg-blue-600 rounded-xl'>Delete</button>
+                <button className='py-2 px-3 bg-blue-600 rounded-xl' onClick={() => del(ind)
+                }>Delete</button>
             </div>
 
         </div>

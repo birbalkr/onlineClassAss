@@ -5,9 +5,17 @@ import UserCard from "./components/UserCard"
 
 function App() {
   const [togggle, setTogggle] = useState(true)
-  const [userData, setUserData] = useState([])
-  let data = JSON.parse(localStorage.getItem("users"))
+  const [userData, setUserData] = useState(() => {
+    return JSON.parse(localStorage.getItem("users")) || [];
+  })
 
+  const handleDelete = (id) => {
+    console.log("id--", id);
+    let filteredData = userData.filter((user, index) => index !== id);
+    setUserData(filteredData);
+    localStorage.setItem("users", JSON.stringify(filteredData));
+
+  }
 
   return (
     <div className="p-2 h-screen">
@@ -16,8 +24,8 @@ function App() {
       {togggle
 
         ? <div className="grid grid-cols-4">
-          {data.map((users, index) => (
-            <UserCard key={index} users={users} />
+          {userData.map((users, index) => (
+            <UserCard ind={index} del={handleDelete} key={index} users={users} />
           ))}
         </div> :
         <div className="flex justify-center h-[70%] items-center">
