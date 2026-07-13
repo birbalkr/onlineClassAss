@@ -8,11 +8,9 @@ function Form({ setTogggle, setUserData, users, updatedData }) {
         defaultValues: updatedData
     })
 
-    console.log("update -> ", users);
 
     const handleForm = (data) => {
         if (updatedData) {
-            // update code 
             setUserData((prev) => {
                 return prev.map((val) => {
                     return val.id === updatedData.id ? { ...data, id: updatedData.id } : val

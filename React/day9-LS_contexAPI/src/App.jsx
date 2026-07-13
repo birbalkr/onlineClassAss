@@ -11,7 +11,7 @@ function App() {
 
   const handleDelete = (id) => {
     console.log("id--", id);
-    let filteredData = userData.filter((user, index) => index !== id);
+    let filteredData = userData.filter((user) => id !== user.id);
     setUserData(filteredData);
     localStorage.setItem("users", JSON.stringify(filteredData));
   }
