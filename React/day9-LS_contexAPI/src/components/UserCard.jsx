@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserCard({ users, del, ind }) {
+function UserCard({ users, del, setUpdatedData, setTogggle }) {
 
 
     return (
@@ -15,8 +15,8 @@ function UserCard({ users, del, ind }) {
                 <p>Phone : {users.phone}</p>
             </div>
             <div className='flex gap-2 justify-end'>
-                <button className='py-2 px-3 bg-blue-600 rounded-xl'>Update</button>
-                <button className='py-2 px-3 bg-blue-600 rounded-xl' onClick={() => del(ind)
+                <button className='py-2 px-3 bg-blue-600 rounded-xl' onClick={() => { setUpdatedData(users); setTogggle((prve) => !prve) }}>Update</button>
+                <button className='py-2 px-3 bg-blue-600 rounded-xl' onClick={() => del(users.id)
                 }>Delete</button>
             </div>
 

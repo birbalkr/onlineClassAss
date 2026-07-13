@@ -14,8 +14,11 @@ function App() {
     let filteredData = userData.filter((user, index) => index !== id);
     setUserData(filteredData);
     localStorage.setItem("users", JSON.stringify(filteredData));
-
   }
+
+  // update data 
+  const [updatedData, setUpdatedData] = useState(null);
+  console.log(updatedData);
 
   return (
     <div className="p-2 h-screen">
@@ -24,12 +27,12 @@ function App() {
       {togggle
 
         ? <div className="grid grid-cols-4">
-          {userData.map((users, index) => (
-            <UserCard ind={index} del={handleDelete} key={index} users={users} />
+          {userData.map((elem) => (
+            <UserCard key={elem.id} setTogggle={setTogggle} setUpdatedData={setUpdatedData} del={handleDelete} users={elem} />
           ))}
         </div> :
         <div className="flex justify-center h-[70%] items-center">
-          <Form users={userData} setUserData={setUserData} setTogggle={setTogggle} />
+          <Form updatedData={updatedData} users={userData} setUserData={setUserData} setTogggle={setTogggle} />
         </div>}
     </div>
 
