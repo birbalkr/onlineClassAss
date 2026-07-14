@@ -7,6 +7,7 @@ export const MyStore = createContext();
 
 
 export const ContextProvider = ({ children }) => {
-    const [myData, setMyData] = useState("this is a context api");
-    return <MyStore.Provider value={myData}>{children}</MyStore.Provider>
+    const [isCardOpen, setIsCardOpen] = useState(false)
+    const [cartItem, setCartItem] = useState([])
+    return <MyStore.Provider value={{ isCardOpen, setIsCardOpen, cartItem, setCartItem }}>{children}</MyStore.Provider>
 };

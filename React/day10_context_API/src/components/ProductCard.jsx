@@ -1,13 +1,94 @@
-import React, { useContext } from 'react'
-import { MyStore } from '../context/Mycontext'
+import { Heart, ShoppingCart, Star } from "lucide-react";
+import { MyStore } from "../context/Mycontext";
+import { useContext } from "react";
 
-function ProductCard() {
-    const contextdata = useContext(MyStore);
-    console.log(contextdata);
-    
+export default function ProductCard({ product }) {
+    // console.log(product.id);
+    let { setCartItem } = useContext(MyStore);
+
     return (
-        <div>ProductCard</div>
-    )
-}
+        <div className="w-80 rounded-2xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
 
-export default ProductCard
+            {/* Image */}
+            <div className="relative flex h-72 items-center justify-center bg-gray-50 p-6">
+                <img
+                    src={product.image}
+                    alt={product.title}
+                    className="h-full w-full object-contain"
+                />
+
+                <button className="absolute right-4 top-4 rounded-full bg-white p-2 shadow hover:bg-red-500 hover:text-white">
+                    <Heart size={18} />
+                </button>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-4 p-5">
+
+                {/* Category */}
+                <p className="text-sm capitalize text-indigo-600">
+                    {product.category}
+                </p>
+
+                {/* Title */}
+                <h2 className="line-clamp-2 h-14 text-lg font-semibold text-gray-800">
+                    {product.title}
+                </h2>
+
+                {/* Rating */}
+                <div className="flex items-center justify-between">
+
+                    <div className="flex items-center gap-1">
+                        <Star
+                            size={18}
+                            fill="currentColor"
+                            className="text-yellow-400"
+                        />
+
+                        <span className="font-medium">
+                            {product.rating[0]}
+                        </span>
+
+                        <span className="text-gray-500">
+                            ({product.rating.count})
+                        </span>
+                    </div>
+
+                    <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">
+                        In Stock
+                    </span>
+
+                </div>
+
+                {/* Price */}
+                <div className="flex items-end gap-3">
+
+                    <span className="text-3xl font-bold text-indigo-600">
+                        ${product.price}
+                    </span>
+
+                    <span className="text-sm text-green-600">
+                        Free Shipping
+                    </span>
+
+                </div>
+
+                {/* Buttons */}
+                <div className="flex gap-3">
+
+                    <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 font-medium text-white transition hover:bg-indigo-700" onClick={()=> setCartItem((prev)=>[...prev, product])}>
+                        <ShoppingCart size={18} />
+                        Add to Cart
+                    </button>
+
+                    <button className="rounded-xl border border-gray-300 px-5 font-medium transition hover:bg-gray-100">
+                        Buy
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    );
+}
