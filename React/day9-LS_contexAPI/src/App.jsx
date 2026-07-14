@@ -10,7 +10,6 @@ function App() {
   })
 
   const handleDelete = (id) => {
-    console.log("id--", id);
     let filteredData = userData.filter((user) => id !== user.id);
     setUserData(filteredData);
     localStorage.setItem("users", JSON.stringify(filteredData));
@@ -18,7 +17,6 @@ function App() {
 
   // update data 
   const [updatedData, setUpdatedData] = useState(null);
-  console.log(updatedData);
 
   return (
     <div className="p-2 h-screen">
