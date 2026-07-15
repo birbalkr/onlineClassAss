@@ -3,6 +3,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Contact from './components/Contact'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   console.log("app rendering......");
@@ -12,6 +13,13 @@ function App() {
 
   // [] run only once when the component is mounted
   // 'count' is a state variable, setCount is a function to update the state variable
+
+  let getData = async () => {
+    let res = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    console.log(res.data);
+  }
+  console.log(getData());
+
 
   const [count, setCount] = useState(0);
   return (
