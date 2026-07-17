@@ -1,6 +1,9 @@
 import { ShoppingCart } from "lucide-react";
+import { useContext } from "react";
+import { MyStore } from "../context/Mycontext";
 
 const Cart = ({ product }) => {
+    let { incrementQuantity, decrementQuantity } = useContext(MyStore);
     return (
         <div className="space-y-5">
                 <div
@@ -33,7 +36,7 @@ const Cart = ({ product }) => {
                     <div className="flex products-center gap-3">
                         <button
 
-                            className="h-8 w-8 rounded bg-red-500 text-white"
+                            className="h-8 w-8 rounded bg-red-500 text-white" onClick={() => decrementQuantity(product.id)}
                         >
                             -
                         </button>
@@ -44,7 +47,7 @@ const Cart = ({ product }) => {
 
                         <button
 
-                            className="h-8 w-8 rounded bg-green-500 text-white"
+                            className="h-8 w-8 rounded bg-green-500 text-white" onClick={() => incrementQuantity(product.id)}
                         >
                             +
                         </button>

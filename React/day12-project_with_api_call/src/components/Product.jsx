@@ -5,12 +5,14 @@ import { MyStore } from "../context/Mycontext";
 
 
 export default function Product({ product, isIncart }) {
-    let { setCartItem } = useContext(MyStore);
+    let { setCartItem, incrementQuantity, decrementQuantity } = useContext(MyStore);
 
     const addTOCart = () => {
-        alert("Product added to cart");
-        setCartItem((prev) => [...prev, {...product, quantity: 1}]);
+        // alert("Product added to cart");
+        setCartItem((prev) => [...prev, { ...product, quantity: 1 }]);
     }
+
+
 
     return (
         <div className="w-80 rounded-2xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
@@ -82,12 +84,13 @@ export default function Product({ product, isIncart }) {
                 {/* Buttons */}
                 <div className="flex gap-3">
                     {
-                        isIncart ? <button className="flex flex-1 items-center justify-center gap-6 rounded-xl bg-gray-200 py-3 font-medium text-gray-600 transition hover:bg-gray-300 text-2xl">
-                            <span>
+                        isIncart && isIncart.quantity > 0 ? 
+                        <button className="flex flex-1 items-center justify-center gap-6 rounded-xl bg-gray-200 py-3 font-medium text-gray-600 transition hover:bg-gray-300 text-2xl">
+                            <span onClick={() => decrementQuantity(product.id)}>
                                 -
                             </span>
-                            <span className="flex items-center gap-2" >1</span>
-                            <span>+</span>
+                            <span className="flex items-center gap-2" >{isIncart.quantity}</span>
+                            <span onClick={() => incrementQuantity(product.id)}>+</span>
                         </button>
                             : <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 font-medium text-white transition hover:bg-indigo-700" onClick={addTOCart}>
                                 <ShoppingCart size={18} />

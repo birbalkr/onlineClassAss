@@ -17,8 +17,6 @@ function App() {
       console.log("API Error", error);
     }
   }
-  console.log(cartItem);
-
 
   useEffect(() => {
     getProductData();
