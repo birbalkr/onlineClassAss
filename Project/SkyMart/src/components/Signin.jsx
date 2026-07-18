@@ -28,17 +28,12 @@ const Input = ({ icon: Icon, placeholder, type = "text", trailing, autoFocus }) 
 function Signin() {
     return (
         <div className="relative min-h-screen w-full bg-black">
-
             <div className="absolute inset-0 grid md:grid-cols-2">
-
                 <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-zinc-800" />
-
-
                 <div className="relative flex flex-col justify-center px-10 md:px-20 py-16">
                     <div className="absolute top-10 left-10 md:left-20">
                         <Logo size="text-2xl" />
                     </div>
-
                     <p className="text-lime-400 text-xs font-bold tracking-widest mb-3">
                         WELCOME BACK
                     </p>
