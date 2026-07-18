@@ -1,6 +1,7 @@
 import React from 'react'
 import { Zap, Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
-import { NavLink } from "react-router";
+import { Navigate, NavLink } from "react-router";
+import { useForm } from 'react-hook-form';
 
 const Logo = ({ size = "text-2xl" }) => (
     <div className="flex items-center gap-2">
@@ -13,20 +14,28 @@ const Logo = ({ size = "text-2xl" }) => (
     </div>
 );
 
-const Input = ({ icon: Icon, placeholder, type = "text", trailing, autoFocus }) => (
-    <div className="relative">
-        <Icon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
-        <input
-            type={type}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            className="w-full bg-zinc-900/70 border border-zinc-800 focus:border-lime-400 rounded-xl py-3.5 pl-11 pr-11 text-sm text-white placeholder-zinc-500 outline-none transition-colors"
-        />
-        {trailing}
-    </div>
-);
 
 function Signin() {
+
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
+
+    const onLoginData = (data) => {
+        let userlogin = JSON.parse(localStorage.getItem('user'));
+        console.log(userlogin);
+
+        if (data.email === userlogin.email && data.password === userlogin.password) {
+            let user = JSON.parse(localStorage.getItem('user'))
+            let updatedUser = { ...user, isLogin: true };
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            console.log("login");
+            window.location.href = "/";
+        }
+        else {
+            alert("Invalid email or password");
+        }
+        reset();
+    }
+
     return (
         <div className="relative min-h-screen w-full bg-black">
             <div className="absolute inset-0 grid md:grid-cols-2">
@@ -76,24 +85,51 @@ function Signin() {
                             Enter your credentials to continue
                         </p>
 
-                        <div className="space-y-4">
-                            <Input icon={Mail} placeholder="Email address" />
-                            <Input
-                                icon={Lock}
-                                placeholder="Password"
-                                trailing={
-                                    <button
-                                        type="button"
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
-                                    >
-                                    </button>
-                                }
-                            />
+                        <form className="space-y-4" onSubmit={handleSubmit(onLoginData)}>
+                            {/* Email */}
+                            <div className="relative">
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                                <input
+                                    {...register("email", { required: "Email is required" })}
+                                    type="email"
+                                    placeholder="Email address"
+                                    className="w-full bg-zinc-900 border border-zinc-800 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                                />
+                                {errors.email && (
+                                    <p className="text-red-500 text-sm">
+                                        {errors.email.message}</p>)}
+                            </div>
 
-                            <button className="w-full bg-lime-400 hover:bg-lime-300 transition-colors rounded-xl py-3.5 font-bold text-black flex items-center justify-center gap-2">
-                                Sign in <ArrowRight className="w-4 h-4" />
+                            {/* Password */}
+                            <div className="relative">
+                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                                <input
+                                    {...register("password", { required: "Password is required" })}
+                                    type="password"
+                                    placeholder="Password"
+                                    className="w-full bg-zinc-900 border border-zinc-800 rounded-xl py-3.5 pl-12 pr-12 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                                />
+                                {errors.password && (
+                                    <p className="text-red-500 text-sm">
+                                        {errors.password.message}</p>)}
+
+                                <button
+                                    type="button"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
+                                >
+                                    {/* Eye icon */}
+                                </button>
+                            </div>
+
+                            {/* Submit */}
+                            <button
+                                type="submit"
+                                className="w-full bg-lime-400 hover:bg-lime-300 transition-colors rounded-xl py-3.5 font-bold text-black flex items-center justify-center gap-2"
+                            >
+                                Sign in
+                                <ArrowRight className="w-4 h-4" />
                             </button>
-                        </div>
+                        </form>
 
                         <p className="text-center text-zinc-500 text-sm mt-6">
                             Don&apos;t have an account?{" "}
