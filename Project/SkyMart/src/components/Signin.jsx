@@ -1,5 +1,6 @@
 import React from 'react'
 import { Zap, Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { NavLink } from "react-router";
 
 const Logo = ({ size = "text-2xl" }) => (
     <div className="flex items-center gap-2">
@@ -96,11 +97,13 @@ function Signin() {
 
                         <p className="text-center text-zinc-500 text-sm mt-6">
                             Don&apos;t have an account?{" "}
-                            <button
+                            <NavLink
+                                to="/create"
                                 className="text-lime-400 font-semibold hover:underline"
                             >
                                 Create one
-                            </button>
+                            </NavLink>
+
                         </p>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Zap, Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { NavLink } from "react-router";
 
 
 const Logo = ({ size = "text-2xl" }) => (
@@ -29,8 +30,7 @@ const Input = ({ icon: Icon, placeholder, type = "text", trailing, autoFocus }) 
 
 function Create() {
     return (
-        <div>
-            <div className="flex items-center justify-center min-h-screen p-6">
+            <div className="flex items-center justify-center min-h-screen p-6 bg-black">
                 <div className="w-full max-w-md flex flex-col items-center">
                     <div className="mb-8">
                         <Logo size="text-3xl" />
@@ -78,15 +78,15 @@ function Create() {
 
                     <p className="text-center text-zinc-500 text-sm mt-6">
                         Already have an account?{" "}
-                        <button
+                        <NavLink
+                            to="/login"
                             className="text-lime-400 font-semibold hover:underline"
                         >
                             Sign in
-                        </button>
+                        </NavLink>
                     </p>
                 </div>
             </div>
-        </div>
     )
 }
 

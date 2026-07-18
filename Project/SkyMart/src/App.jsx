@@ -1,15 +1,11 @@
-import Create from "./components/Create"
-import Signin from "./components/Signin"
+import LoginRoutes from "./routes/LoginRoutes"
 
 
 
 function App() {
 
   return (
-    <>
-      <Signin />
-      <Create/>
-    </>
+    <LoginRoutes />
   )
 }
 
