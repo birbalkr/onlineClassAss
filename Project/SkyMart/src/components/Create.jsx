@@ -21,10 +21,15 @@ function Create() {
 
     const { register, reset, handleSubmit, watch, formState: { errors } } = useForm();
 
-    // const onSubmit=(data) => {
-    //     console.log(data);
-    //     reset();
-    // }
+    const onSubmit = (data) => {
+        const user = {
+            ...data,
+            isLogin: true,
+        };
+        localStorage.setItem('user', JSON.stringify(user));
+        reset();
+    }
+
     return (
         <div className="flex items-center justify-center min-h-screen p-6 bg-black">
             <div className="w-full max-w-md flex flex-col items-center">
@@ -33,10 +38,7 @@ function Create() {
                 </div>
 
                 <form
-                    onSubmit={handleSubmit((data) => {
-                        console.log(data);
-                        reset();
-                    })}
+                    onSubmit={handleSubmit(onSubmit)}
                     className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-8"
                 >
                     <h2 className="text-2xl font-extrabold text-white mb-1">

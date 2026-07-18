@@ -1,7 +1,5 @@
 import LoginRoutes from "./routes/LoginRoutes"
 
-
-
 function App() {
 
   return (
