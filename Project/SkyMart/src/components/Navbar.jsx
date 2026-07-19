@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 import { NavLink } from "react-router";
 import { Zap, ShoppingCart, LogOut, ArrowRight, Package, TrendingUp, Star, Tag, ShoppingBag, X } from "lucide-react";
+import CartData from './CartData';
 
 
 function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
+
+    let userName = JSON.parse(localStorage.getItem('user'))?.name;
+
+    const logout = () => {
+        console.log("click");
+        const isLoginData = JSON.parse(localStorage.getItem('user'));
+        localStorage.setItem('user', JSON.stringify({ ...isLoginData, isLogin: false }));
+        window.location.pathname = "/login"
+    }
 
     return (
         <div className='bg-black text-white font-sans px-6 py-5'>
@@ -17,8 +27,6 @@ function Navbar() {
                         Sky<span className="text-lime-400">Mart</span>
                     </span>
                 </div>
-
-
 
                 <div className="hidden md:flex items-center gap-1">
                     <NavLink
@@ -55,9 +63,9 @@ function Navbar() {
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 border border-gray-700 rounded-full pl-1 pr-4 py-1">
                         <div className="w-7 h-7 rounded-full bg-lime-400 text-black text-xs font-bold flex items-center justify-center">
-                            A
+                            {userName?.charAt(0).toUpperCase()}
                         </div>
-                        <span className="text-sm">aditya</span>
+                        <span className="text-sm">{userName}</span>
                     </div>
                     <button
                         onClick={() => setIsCartOpen(true)}
@@ -65,7 +73,7 @@ function Navbar() {
                     >
                         <ShoppingCart size={16} />
                     </button>
-                    <button className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center hover:border-gray-500 transition-colors">
+                    <button className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center hover:border-gray-500 transition-colors" onClick={logout}>
                         <LogOut size={16} />
                     </button>
                 </div>
@@ -80,34 +88,7 @@ function Navbar() {
             )}
 
             {/* Cart Drawer */}
-            <div
-                className={`fixed top-0 right-0 h-full w-full max-w-md bg-black border-l border-gray-800 z-50 transform transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
-            >
-                <div className="flex items-center justify-between px-6 py-5 border-b border-gray-800">
-                    <div className="flex items-center gap-2 text-lg font-bold">
-                        <ShoppingBag size={20} className="text-lime-400" />
-                        Cart
-                    </div>
-                    <button
-                        onClick={() => setIsCartOpen(false)}
-                        className="text-gray-400 hover:text-white transition-colors"
-                    >
-                        <X size={22} />
-                    </button>
-                </div>
-
-                <div className="flex flex-col items-center justify-center text-center px-6 h-[70%]">
-                    <div className="w-20 h-20 rounded-2xl bg-gray-900 flex items-center justify-center mb-6">
-                        <Package size={32} className="text-gray-600" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-1">Cart is empty</h3>
-                    <p className="text-gray-500 mb-6">Go shop something cool!</p>
-                    <button className="bg-lime-400 hover:bg-lime-300 text-black font-semibold px-6 py-3 rounded-xl transition-colors">
-                        Browse Products
-                    </button>
-                </div>
-            </div>
+            <CartData setIsCartOpen={setIsCartOpen} isCartOpen={isCartOpen} />
         </div>
     )
 }
