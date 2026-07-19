@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Zap, ShoppingCart, LogOut, ArrowRight, Package, TrendingUp, Star, Tag, ShoppingBag } from "lucide-react";
+import { MyStore } from "../context/MyContext";
 
 export default function Home() {
+    let { userName } = useContext(MyStore)
     return (
         <div className="min-h-screen bg-black text-white font-sans px-6 py-5">
             {/* Hero */}
@@ -21,7 +23,7 @@ export default function Home() {
                         <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight mb-4">
                             Welcome back,
                             <br />
-                            <span className="text-lime-400">aditya!</span>
+                            <span className="text-lime-400">{userName}</span>
                         </h1>
                         <p className="text-gray-400 text-base mb-8">
                             Discover today's picks — hand-curated products across
