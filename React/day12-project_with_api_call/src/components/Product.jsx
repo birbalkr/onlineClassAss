@@ -8,7 +8,7 @@ export default function Product({ product, isIncart }) {
     let { setCartItem, incrementQuantity, decrementQuantity } = useContext(MyStore);
 
     const addTOCart = () => {
-        // alert("Product added to cart");
+        alert("Product added to cart");
         setCartItem((prev) => [...prev, { ...product, quantity: 1 }]);
     }
 
@@ -96,11 +96,8 @@ export default function Product({ product, isIncart }) {
                                 <ShoppingCart size={18} />
                                 Add to Cart
                             </button>}
-
                 </div>
-
             </div>
-
         </div>
     );
 }
