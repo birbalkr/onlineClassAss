@@ -24,7 +24,7 @@ function App() {
     })
     setProductsData(result);
   }
-
+  // Debouncing...... 
   useEffect(() => {
     if (!productSearch) return;
 
@@ -35,6 +35,27 @@ function App() {
     return () => clearTimeout(timeout);
 
   }, [productSearch])
+
+
+  // throttling........ 
+  let throttle = false;
+  useEffect(() => {
+    let handleScroll = () => {
+      if (throttle) return;
+      throttle = true;
+      console.log("scrolling........");
+
+      setTimeout(() => {
+        throttle = false;
+      }, 2000)
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [])
 
   return (
     <div>
