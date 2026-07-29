@@ -2,6 +2,7 @@ import React, { lazy } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router';
 import MainLayout from '../layout/MainLayout';
 import App from '../App';
+import { product } from '../API/ProductAPI';
 
 let About = lazy(() => import('../pages/About'));
 let Contact = lazy(() => import('../pages/Contact'));
@@ -19,7 +20,9 @@ function AppRoutes() {
                 },
                 {
                     path: 'about',
-                    element: <About />
+                    loader: product,
+                    hydrateFallbackElement: <div>Loading...</div>,
+                    element: <About />,
                 },
                 {
                     path: '/contact',
