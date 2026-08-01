@@ -8,6 +8,8 @@ import RegisterPage from '../pages/RegisterPage'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../features/AuthSlice'
+import PublicProtected from './protected/PublicProtected'
+import MainProtected from './protected/MainProtected'
 function AppRouter() {
     let dispatch = useDispatch();
 
@@ -29,27 +31,35 @@ function AppRouter() {
     let router = createBrowserRouter([
         {
             path: '/',
-            element: <AuthLayout />,
-            children: [
-                {
-                    path: "",
-                    element: <LoginPage />
-                },
-                {
-                    path: "register",
-                    element: <RegisterPage />
-                }
-            ]
+            element: <PublicProtected />,
+            children: [{
+                path: '',
+                element: <AuthLayout />,
+                children: [
+                    {
+                        path: "",
+                        element: <LoginPage />
+                    },
+                    {
+                        path: "register",
+                        element: <RegisterPage />
+                    }
+                ]
+            },]
         },
         {
             path: '/main',
-            element: <MainLayout />,
-            children: [
-                {
-                    path: "",
-                    element: <HomePage />
-                }
-            ]
+            element: <MainProtected />,
+            children: [{
+                path: '',
+                element: <MainLayout />,
+                children: [
+                    {
+                        path: "",
+                        element: <HomePage />
+                    }
+                ]
+            }]
         }
     ])
 
