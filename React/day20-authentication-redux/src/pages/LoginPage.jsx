@@ -1,23 +1,48 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment, incrementByValue } from '../features/counterSlice';
+import { useAuth } from "../hooks/authHooks";
 
-function LoginPage() {
-    const [inputValue, setInputValue] = useState();
-
-    let dispatch = useDispatch();
-    let { count } = useSelector((store) => store.counter);
+const Login = () => {
+    let { navigate, register, handleSubmit, errors, loginform } = useAuth()
     return (
-        <div>
-            <h4>Count: {count}</h4>
-            <input type="text" placeholder='enter count value' onChange={(e) => setInputValue(e.target.value)} />
-            <div>
-                <button onClick={() => dispatch(increment())}>Increment</button>
-                <button onClick={() => dispatch(decrement())}>Decrement</button>
-                <button onClick={() => dispatch(incrementByValue(inputValue))}>IncrementByValue</button>
-            </div>
-        </div>
-    )
-}
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+            <form className="w-96 bg-white p-8 rounded-xl shadow-lg space-y-5" onSubmit={handleSubmit(loginform)}>
+                <h2 className="text-3xl font-bold text-center">Login</h2>
 
-export default LoginPage
+                <div>
+                    <label className="block mb-2 font-medium">Email</label>
+                    <input
+                        {...register("email", { required: "Email is required" })}
+                        type="email"
+                        placeholder="Enter your email"
+                        className="w-full border rounded-lg p-3 outline-none focus:border-blue-500"
+                    />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+                </div>
+
+                <div>
+                    <label className="block mb-2 font-medium">Password</label>
+                    <input
+                        {...register("password", { required: "Password is required" })}
+                        type="password"
+                        placeholder="Enter your password"
+                        className="w-full border rounded-lg p-3 outline-none focus:border-blue-500"
+                    />
+                    {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+                </div>
+
+                <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+                >
+                    Login
+                </button>
+
+                <p className="text-center text-sm">
+                    Don't have an account?
+                    <span className="text-blue-600 cursor-pointer ml-1" onClick={() => navigate('/register')}>Register</span>
+                </p>
+            </form>
+        </div>
+    );
+};
+
+export default Login;
