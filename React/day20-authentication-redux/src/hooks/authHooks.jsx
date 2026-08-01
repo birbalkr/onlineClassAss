@@ -28,9 +28,11 @@ export const useAuth = () => {
 
         if (!user) {
             toast.error("Invalid email or password")
+            return
         }
 
         dispatch(addUser(user))
+        localStorage.setItem("loggedInUser", JSON.stringify(user))
         toast.success("Login successful")
         reset()
     }
