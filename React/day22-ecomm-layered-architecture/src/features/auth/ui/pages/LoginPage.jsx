@@ -16,14 +16,14 @@ const LoginPage = () => {
                 <h2 className="text-3xl font-bold text-center">Login</h2>
 
                 <div>
-                    <label className="block mb-2 font-medium">Email</label>
+                    <label className="block mb-2 font-medium">UserName</label>
                     <input
-                        {...register("email", { required: "Email is required" })}
-                        type="email"
-                        placeholder="Enter your email"
+                        {...register("username", { required: "username is required" })}
+                        type="text"
+                        placeholder="Enter your username"
                         className="w-full border rounded-lg p-3 outline-none focus:border-blue-500"
                     />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+                    {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>}
                 </div>
 
                 <div>

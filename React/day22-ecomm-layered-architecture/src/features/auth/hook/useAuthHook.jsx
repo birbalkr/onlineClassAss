@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { loginUserApi } from "../api/authApi";
+import { addUser } from "../state/authSlice";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 export const useAuth = () => {
     let navigate = useNavigate();
+    let dispatch = useDispatch();
 
     let {
         register,
@@ -17,8 +22,18 @@ export const useAuth = () => {
 
     }
 
-    const loginform = (data) => {
-        console.log('login ->', data);
+    const loginform = async (data) => {
+        try {
+            // api call
+            let response = await loginUserApi(data);
+            console.log(response);
+            dispatch(addUser(response));
+            toast.success("Login successful");
+        } catch (error) {
+            console.log("loginfrom ->", error);
+
+        }
+
 
     }
 
