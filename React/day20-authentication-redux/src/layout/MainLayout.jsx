@@ -1,11 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router'
+import Navbar from '../components/Navbar'
 
 function MainLayout() {
     return (
-        <div>
-            <nav>Navbar</nav>
-            <Outlet/>
+        <div className='p-2 h-screen bg-black text-white'>
+            <Navbar />
+            <Outlet />
         </div>
     )
 }

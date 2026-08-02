@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { toast } from 'react-toastify';
 import { useDispatch } from "react-redux";
-import { increment } from "../features/counterSlice";
 import { addUser } from "../features/AuthSlice";
 
 export const useAuth = () => {
@@ -12,7 +11,6 @@ export const useAuth = () => {
     const [registerUsers, setRegisterUsers] = useState(JSON.parse(localStorage.getItem("registerUsers")) || []);
 
     let { register, reset, handleSubmit, formState: { errors } } = useForm()
-
 
 
     const registerform = (data) => {
