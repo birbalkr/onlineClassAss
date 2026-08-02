@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import PublicProtected from './protected/PublicProtected'
 import AuthLayout from '../app/layout/AuthLayout'
@@ -10,8 +10,24 @@ import HomePage from '../shared/ui/pages/HomePage'
 import ProductPages from '../features/product/ui/pages/ProductPages'
 import CartPages from '../features/cart/ui/pages/CartPages'
 import OrderPages from '../features/orders/ui/pages/OrderPages'
+import { hydrateUser } from '../features/auth/api/authApi'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../features/auth/state/authSlice'
 
 function AppRoutes() {
+    let dispatch = useDispatch();
+
+    useEffect(() => {
+        (async () => {
+            try {
+                let res = await hydrateUser();
+                dispatch(addUser(res));
+                
+            } catch (error) {
+                console.log("error in hydration....", error);
+            }
+        })()
+    }, [])
 
     let router = createBrowserRouter([
         // authenticatedRoutes
