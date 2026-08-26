@@ -29,4 +29,19 @@ const getAllNotesController = async (req, res) => {
     console.log("error in get notes api", error);
   }
 };
-module.exports = { createNotesController, getAllNotesController };
+
+const getNoteByIdController = async (req, res) => {
+  try {
+    let noteId = req.params.id;
+    let note = await NoteModel.findById(noteId);
+
+    res.status(200).json({
+      status: "success",
+      message: "Note fetched successfully",
+      data: note,
+    });
+  } catch (error) {
+    console.log("error in get note by id api", error);
+  }
+}
+module.exports = { createNotesController, getAllNotesController, getNoteByIdController };
