@@ -1,47 +1,82 @@
 const NoteModel = require("../models/Note.model");
 
 const createNotesController = async (req, res) => {
-  try {
-    let { title, description } = req.body;
+    try {
+        let { title, description } = req.body;
 
-    let Newnote = await NoteModel.create({ title, description });
+        let Newnote = await NoteModel.create({ title, description });
 
-    return res.send(201).json({
-      status: "success",
-      massage: "Note created successfully",
-      data: Newnote,
-    });
-  } catch (error) {
-    console.log("error in  creation", error);
-  }
+        return res.send(201).json({
+            status: "success",
+            massage: "Note created successfully",
+            data: Newnote,
+        });
+    } catch (error) {
+        console.log("error in  creation", error);
+    }
 };
 
 const getAllNotesController = async (req, res) => {
-  try {
-    const allNotes = await NoteModel.find();
+    try {
+        const allNotes = await NoteModel.find();
 
-    res.status(200).json({
-      status: "success",
-      message: "All notes fetched successfully",
-      data: allNotes,
-    });
-  } catch (error) {
-    console.log("error in get notes api", error);
-  }
+        res.status(200).json({
+            status: "success",
+            message: "All notes fetched successfully",
+            data: allNotes,
+        });
+    } catch (error) {
+        console.log("error in get notes api", error);
+    }
 };
 
 const getNoteByIdController = async (req, res) => {
-  try {
-    let noteId = req.params.id;
-    let note = await NoteModel.findById(noteId);
+    try {
+        let noteId = req.params.id;
+        let note = await NoteModel.findById(noteId);
 
-    res.status(200).json({
-      status: "success",
-      message: "Note fetched successfully",
-      data: note,
-    });
-  } catch (error) {
-    console.log("error in get note by id api", error);
-  }
+        res.status(200).json({
+            status: "success",
+            message: "Note fetched successfully",
+            data: note,
+        });
+    } catch (error) {
+        console.log("error in get note by id api", error);
+    }
+};
+
+const updateNoteByIdController = async (req, res) => {
+    try {
+        let noteId = req.params.id;
+        let body = req.body;
+
+        let updatedNote = await NoteModel.findByIdAndUpdate(noteId, body, {
+            new: true,
+        });
+        return res.status(200).json({
+            status: "success",
+            message: "Note updated successfully",
+            data: updatedNote,
+        });
+    } catch (error) { }
+};
+
+const deleteNoteByIdController = async (req, res) => {
+    try {
+        let noteId= req.params.id;
+        await NoteModel.findByIdAndDelete(noteId);
+        return res.status(200).json({
+            message: "Note deleted successfully",
+        })
+    } catch (error) {
+        
+    }
 }
-module.exports = { createNotesController, getAllNotesController, getNoteByIdController };
+
+module.exports = {
+    createNotesController,
+    getAllNotesController,
+    getNoteByIdController,
+    updateNoteByIdController,
+    deleteNoteByIdController,
+};
