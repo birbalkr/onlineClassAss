@@ -31,6 +31,28 @@ app.post("/api/register", async (req, res) => {
 });
 
 
+app.get("/api/me", async (req, res) => {
+    const authHeader = req.headers.authorization;
+
+    console.log(" auth header data", authHeader);
+
+    const data = jwt.decode(authHeader);
+
+    console.log("jwt data ->", data);
+
+    const user = await userModel.findById(data.id);
+
+    console.log("user data ->", user);
+
+
+    res.status(200).json({
+        message: "User data fetched successfully",
+        data: {
+            user: { name: user.name, email: user.email, id: user._id },
+        }
+    });
+
+})
 
 export default app;
 
