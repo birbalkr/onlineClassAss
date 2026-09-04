@@ -2,6 +2,7 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
 import { authenticateUser } from "../middleware/auth.middleware.js";
+import bcrypt from "bcryptjs";
 
 
 const app = express();
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
 app.post("/api/register", async (req, res) => {
     const { name, email, password } = req.body;
 
-    const user = await userModel.create({ name, email, password });
+    const user = await userModel.create({ name, email, password:await bcrypt.hash(password,10) });
 
     const token = jwt.sign(
         {
