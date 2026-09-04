@@ -16,12 +16,12 @@ app.get("/", (req, res) => {
 app.post("/api/register", async (req, res) => {
     const { name, email, password } = req.body;
 
-    const user = await userModel.create({ name, email, password:await bcrypt.hash(password,10) });
+    const user = await userModel.create({ name, email, password: await bcrypt.hash(password, 10) });
 
     const token = jwt.sign(
         {
             id: user._id,
-        }, "b6cc40ded10176d3225e79ba5adc352ae3e9895c1af5b0035fd6ef176c8ee1ef0fc7cac13e3e53abd7ea1dd48fc2bf68", { expiresIn: "15m" });
+        }, process.env.JWT_SECRET, { expiresIn: "15m" });
 
     res.status(201).json({
         message: "User registered successfully",
@@ -32,6 +32,34 @@ app.post("/api/register", async (req, res) => {
     });
 });
 
+
+app.post("/api/login", async (req, res) => {
+
+    const { email, password } = req.body;
+
+    const user = await userModel.findOne({ email });
+
+    const isValidPassword = bcrypt.compare(password, user.password);
+
+    if (!isValidPassword) {
+        return res.status(401).json({
+            message: "Invalid email or password"
+        })
+    }
+
+    const token = jwt.sign(
+        {
+            id: user._id,
+        }, process.env.JWT_SECRET)
+
+    res.status(200).json({
+        message: "User logged in successfully",
+        data: {
+            user: { name: user.name, email: user.email, id: user._id },
+            token
+        }
+    })
+})
 
 app.get("/api/me", authenticateUser, async (req, res) => {
 
