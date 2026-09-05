@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import userModel from "../models/user.models.js";
+import { config } from "../config/config.js";
 
 const isUserLogin = async (req, res, next) => {
     const token = req.headers.authorization
@@ -11,7 +12,7 @@ const isUserLogin = async (req, res, next) => {
         return;
     }
 
-    const UserId =await jwt.decode(token);
+    const UserId =await jwt.verify(token, config.JWT_TOKEN);
 
     const user = await userModel.findById(UserId.id);
 
