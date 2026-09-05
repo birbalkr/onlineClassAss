@@ -39,6 +39,12 @@ app.post("/api/login", async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
+    if (!user) {
+        return res.status(401).json({
+            message: "Invalid email or password"
+        })
+    }
+
     console.log("find email ->", user);
     
 
