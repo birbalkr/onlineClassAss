@@ -12,6 +12,9 @@ export const authenticateUser = async (req, res, next) => {
     }
 
     const data = jwt.verify(token, process.env.JWT_SECRET);
+    
+    console.log(data);
+    
 
     const user = await userModel.findById(data.id);
 

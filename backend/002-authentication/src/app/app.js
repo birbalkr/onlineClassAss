@@ -39,7 +39,12 @@ app.post("/api/login", async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
-    const isValidPassword = bcrypt.compare(password, user.password);
+    console.log("find email ->", user);
+    
+
+    const isValidPassword = await bcrypt.compare(password, user.password);
+
+    console.log("isValidPassword ->", isValidPassword);
 
     if (!isValidPassword) {
         return res.status(401).json({
