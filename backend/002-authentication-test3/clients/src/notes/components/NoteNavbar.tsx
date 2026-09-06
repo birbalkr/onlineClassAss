@@ -25,7 +25,7 @@ function NoteNavbar() {
                 console.log("Note created successfully:", response);
             }).catch((error) => {
                 console.error("Note creation failed:", error);
-            });
+            })
 
 
         console.log("title -- >", title);

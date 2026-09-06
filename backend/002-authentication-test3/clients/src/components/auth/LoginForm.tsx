@@ -17,7 +17,7 @@ export default function LoginForm() {
             });
         reset();
 
-        navigate("notes");
+        navigate("/notes");
     }
 
     return (

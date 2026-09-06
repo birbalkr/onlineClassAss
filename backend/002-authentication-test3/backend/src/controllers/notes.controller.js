@@ -1,10 +1,55 @@
-export const createNote = async (req, res) => {
-    const id = req.cookies.notetoken;
-    await connectDB(id);
-    
-}
+import notesModel from "../models/notes.models.js";
 
-export const getAllNotes = async (req, res) => { }
+export const createNote = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+
+        if (!title || !description) {
+            return res.status(400).json({
+                message: "Title and description are required",
+            });
+        }
+
+        const note = await notesModel.create({
+            title,
+            description,
+            user: req.user.id,
+        });
+
+        return res.status(201).json({
+            message: "Note created successfully",
+            note,
+        });
+    } catch (error) {
+        console.error("Create note error:", error);
+
+        return res.status(500).json({
+            message: "Failed to create note",
+        });
+    }
+};
+
+export const getAllNotes = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const notes = await notesModel.find({ user: userId });
+        console.log(notes);
+        
+
+        return res.status(200).json({
+            message: "Notes fetched successfully",
+            notes,
+        });
+
+
+    } catch (error) {
+        console.error("get all note error:", error);
+
+        return res.status(500).json({
+            message: "Failed to create note",
+        });
+    }
+}
 
 export const updateNote = async (req, res) => { }
 
