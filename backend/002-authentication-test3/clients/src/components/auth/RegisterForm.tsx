@@ -19,7 +19,7 @@ export default function RegisterForm() {
             });
         reset();
         
-        navigate("/auth/me");
+        navigate("/notes");
     }
 
     return (
