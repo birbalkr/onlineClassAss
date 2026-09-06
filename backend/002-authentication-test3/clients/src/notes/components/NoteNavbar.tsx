@@ -2,15 +2,17 @@ import { useState } from "react";
 import notesHooks from "../../hook/notesHooks";
 import { createNoteAPi } from "../../api/notesApi";
 
-function NoteNavbar() {
+function NoteNavbar({ user, setLoadData }: any) {
     const { navigate, register, reset, handleSubmit } = notesHooks();
 
     const [showAddNote, setShowAddNote] = useState(false);
+    // console.log("user Data ==> ",user.name);
 
-    const [user] = useState({
-        name: "Aditya",
-        profileImg: "https://i.pravatar.cc/100?img=12",
-    });
+
+    // const [user] = useState({
+    //     name: "Aditya",
+    //     profileImg: "https://i.pravatar.cc/100?img=12",
+    // });
 
     const handleLogout = () => {
         navigate("/auth/login");
@@ -29,10 +31,12 @@ function NoteNavbar() {
 
 
         console.log("title -- >", title);
-        
+
         reset();
 
 
+
+        setLoadData(true);
 
         setShowAddNote(false);
     };
@@ -65,13 +69,13 @@ function NoteNavbar() {
                         {/* Profile */}
                         <div className="flex items-center gap-3">
                             <img
-                                src={user.profileImg}
-                                alt={user.name}
+                                src={user?.profileImg || "https://i.pravatar.cc/100?img=12"}
+                                // alt={user.name}
                                 className="h-9 w-9 rounded-full object-cover"
                             />
 
                             <span className="text-sm font-medium text-gray-800">
-                                {user.name}
+                                {user?.name || "Guest"}
                             </span>
                         </div>
 

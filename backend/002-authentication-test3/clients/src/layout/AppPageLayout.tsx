@@ -5,49 +5,46 @@ import NoteNavbar from "../notes/components/NoteNavbar";
 import { getAllNotes } from "../api/notesApi";
 import { Outlet } from "react-router";
 import NotesPage from "../notes/page/NotesPage";
+import notesHooks from "../hook/notesHooks";
 
 function AppPageLayout() {
-    const [user, setUser] = useState<any>();
+    const [user, setUser] = useState<any>(null);
     const [notes, setNotes] = useState<any[]>([]);
+    const { setLoadData, loadData } = notesHooks()
 
     const { navigate } = authHook();
 
+    const apiData = async () => {
+
+        try {
+            const profileResponse = await profile();
+            setUser(profileResponse.data.data.user);
+
+
+            const notesResponse = await getAllNotes();
+            setNotes(notesResponse.data.notes);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        } finally {
+            setLoadData(false);
+            console.log("loadData effect ",loadData);
+            
+        }
+
+    }
+
     useEffect(() => {
-        profile()
-            .then((response) => {
-                // console.log("Profile Data:", response.data.data.user);
-                setUser(response.data.data.user);
-            })
-            .catch((error) => {
-                console.log(
-                    "API Error ->",
-                    error.response?.data?.message || error.message
-                );
-
-                if (error.response?.status === 401) {
-                    navigate("/auth/login");
-                }
-            });
-
-        getAllNotes().
-            then((response) => {
-                console.log("All Notes:", response.data.notes);
-                setNotes(response.data.notes);
-            }).catch((error) => {
-                console.error("Failed to fetch notes:", error);
-            })
-
-        console.log("user", user);
-    }, []);
+        apiData();
+    }, [loadData]);
 
     return (
         <div>
-            <NoteNavbar />
+            <NoteNavbar user={user} setLoadData={setLoadData} />
             <div className="mx-auto max-w-7xl p-6">
                 <h1 className="mb-6 text-2xl font-bold text-gray-900">
                     My Notes
                 </h1>
-                <NotesPage notes={notes} />
+                <NotesPage notes={notes} setLoadData={setLoadData} />
             </div>
             <Outlet />
         </div>

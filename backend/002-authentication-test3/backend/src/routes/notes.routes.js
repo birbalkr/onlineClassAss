@@ -9,7 +9,7 @@ notesRoutes.get("/allNotes",authMiddleware, getAllNotes);
 
 notesRoutes.post("/create",authMiddleware, createNote);
 
-notesRoutes.delete("/delete", deleteNote);
+notesRoutes.delete("/delete/:id", deleteNote);
 
 notesRoutes.put("/update", updateNote);
 

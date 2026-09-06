@@ -1,9 +1,9 @@
+import notesHooks from "../../hook/notesHooks";
 
-function NotesPage({ notes }: any) {
+function NotesPage({ notes, setLoadData }: any) {
+    const { deleteNotes } = notesHooks();
     return (
         <div >
-           
-
             {notes?.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-gray-300 p-10 text-center">
                     <p className="text-gray-500">
@@ -22,7 +22,7 @@ function NotesPage({ notes }: any) {
                                     {note.title}
                                 </h2>
 
-                                <button className="text-gray-400 hover:text-red-500">
+                                <button className="text-gray-400 hover:text-red-500" onClick={() => { deleteNotes(note._id); setLoadData(true) }}>
                                     🗑️
                                 </button>
                             </div>
@@ -43,5 +43,4 @@ function NotesPage({ notes }: any) {
         </div>
     );
 }
-
 export default NotesPage;

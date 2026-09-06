@@ -34,7 +34,7 @@ export const getAllNotes = async (req, res) => {
         const userId = req.user.id;
         const notes = await notesModel.find({ user: userId });
         console.log(notes);
-        
+
 
         return res.status(200).json({
             message: "Notes fetched successfully",
@@ -51,6 +51,27 @@ export const getAllNotes = async (req, res) => {
     }
 }
 
-export const updateNote = async (req, res) => { }
+export const deleteNote = async (req, res) => {
+    try {
+        const { id } = req.params;
 
-export const deleteNote = async (req, res) => { }
+        const note = await notesModel.findByIdAndDelete(id);
+        if (!note) {
+            return res.status(404).json({
+                message: "Note not found",
+            });
+        }
+
+        return res.status(200).json({
+            message: "Note deleted successfully",
+        });
+    } catch (error) {
+        console.error("Delete note error:", error);
+
+        return res.status(500).json({
+            message: "Failed to delete note",
+        });
+    }
+}
+
+export const updateNote = async (req, res) => { }

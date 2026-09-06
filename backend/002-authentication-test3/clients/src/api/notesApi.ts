@@ -17,3 +17,11 @@ export const getAllNotes = async () => {
 
   return response
 };
+
+export const deleteNotesApi = async (noteId: string) => {
+  const response = await axios.delete(`${API_URL}/delete/${noteId}`, {
+    withCredentials: true,
+  });
+
+  return response
+}
