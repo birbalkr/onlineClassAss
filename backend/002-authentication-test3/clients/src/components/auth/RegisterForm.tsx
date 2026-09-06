@@ -1,8 +1,29 @@
+import { registerApi } from "../../api/authApi";
+import authHook from "../../hook/authHook";
+
 
 export default function RegisterForm() {
+
+    const { register, reset, handleSubmit, errors } = authHook();
+
+    const registerData = (data: any) => {
+        const { username, name, email, password } = data;
+        
+        registerApi({ username, name, email, password })
+            .then((response) => {
+                console.log("Registration successful:", response);
+            })
+            .catch((error) => {
+                console.error("Registration failed:", error);
+            });
+        
+
+        reset();
+    }
+
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-            <form className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
+            <form onSubmit={handleSubmit(registerData)} className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
 
                 {/* Header */}
                 <div className="mb-8 text-center">
@@ -22,10 +43,16 @@ export default function RegisterForm() {
                     </label>
 
                     <input
+                        {...register("username", { required: "Username is required" })}
                         type="text"
                         placeholder="aditya12"
                         className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-black focus:bg-white focus:ring-2 focus:ring-black/10"
                     />
+                    {errors.username && (
+                        <p className="mt-1 text-sm text-red-500">
+                            {errors.username.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* Name */}
@@ -35,6 +62,7 @@ export default function RegisterForm() {
                     </label>
 
                     <input
+                        {...register("name", { required: "Full name is required" })}
                         type="text"
                         placeholder="Aditya"
                         className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-black focus:bg-white focus:ring-2 focus:ring-black/10"
@@ -48,6 +76,7 @@ export default function RegisterForm() {
                     </label>
 
                     <input
+                        {...register("email", { required: "Email is required" })}
                         type="email"
                         placeholder="aditya@gmail.com"
                         className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-black focus:bg-white focus:ring-2 focus:ring-black/10"
@@ -61,6 +90,7 @@ export default function RegisterForm() {
                     </label>
 
                     <input
+                        {...register("password", { required: "Password is required" })}
                         type="password"
                         placeholder="••••••••"
                         className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-black focus:bg-white focus:ring-2 focus:ring-black/10"
