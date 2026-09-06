@@ -44,6 +44,7 @@ export const authControllerLogin = async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
+
     console.log(user);
 
 
@@ -57,7 +58,12 @@ export const authControllerLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    res.cookie("token", token);
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        maxAge: 60 * 60 * 1000,
+    });
 
     res.status(200).json({
         message: "User logged in successfully",
@@ -70,4 +76,21 @@ export const authControllerLogin = async (req, res) => {
             , token
         }
     });
+}
+
+
+export const authControllerMe = async (req, res) => {
+
+    const user = await userModel.findById(req.user.id);
+
+    res.status(200).json({
+        message: "User fetched successfully",
+        data: {
+            user: {
+                username: user.username,
+                name: user.name,
+                email: user.email
+            }
+        }
+    })
 }

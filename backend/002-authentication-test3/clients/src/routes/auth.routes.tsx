@@ -3,6 +3,7 @@ import LoginForm from '../components/auth/LoginForm'
 import RegisterForm from '../components/auth/RegisterForm'
 import MainpageLayout from '../components/layout/MainpageLayout'
 import ForgotPage from '../components/auth/ForgotPage'
+import AppPageLayout from '../components/layout/AppPageLayout'
 
 
 const AuthRoutes = createBrowserRouter([
@@ -22,6 +23,10 @@ const AuthRoutes = createBrowserRouter([
             {
                 path: 'forgot',
                 element: <ForgotPage />
+            },
+            {
+                path: 'me',
+                element:<AppPageLayout/>
             }
         ]
     }

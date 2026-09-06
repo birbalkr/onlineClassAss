@@ -1,24 +1,25 @@
+import { Navigate } from "react-router";
 import { registerApi } from "../../api/authApi";
 import authHook from "../../hook/authHook";
 
 
 export default function RegisterForm() {
 
-    const { register, reset, handleSubmit, errors } = authHook();
+    const { register, reset, handleSubmit, errors, navigate } = authHook();
 
     const registerData = (data: any) => {
         const { username, name, email, password } = data;
-        
-        registerApi({ username, name, email, password })
+
+        registerApi({ username, name, email, password }, "register")
             .then((response) => {
                 console.log("Registration successful:", response);
             })
             .catch((error) => {
                 console.error("Registration failed:", error);
             });
-        
-
         reset();
+        
+        navigate("/auth/me");
     }
 
     return (
