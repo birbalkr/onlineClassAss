@@ -15,7 +15,13 @@ export const authControllerRegister = async (req, res) => {
     })
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    res.cookie("token", token);
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        maxAge: 60 * 60 * 1000,
+    });
+
     res.status(201).json({
         message: "User registered successfully",
         data: {
