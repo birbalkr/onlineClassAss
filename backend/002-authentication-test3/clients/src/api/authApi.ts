@@ -2,8 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/auth";
 
-export const registerApi = async (data: any, reg: string) => {
-  const response = await axios.post(`${API_URL}/${reg}`, data, {
+export const registerApi = async (data: any) => {
+  const response = await axios.post(`${API_URL}/register`, data, {
     withCredentials: true,
   });
 
@@ -11,7 +11,7 @@ export const registerApi = async (data: any, reg: string) => {
 };
 
 export const loginApi = async (data: any) => {
-  const response = await axios.post(`${API_URL}/login`, data,{
+  const response = await axios.post(`${API_URL}/login`, data, {
     withCredentials: true,
   });
 
@@ -29,6 +29,17 @@ export const profile = async () => {
     withCredentials: true,
   });
 
-  return response;
-  
+  return response.data;
+};
+
+export const logoutApi = async () => {
+  const response = await axios.post(
+    `${API_URL}/logout`,
+    {},
+    {
+      withCredentials: true,
+    },
+  );
+
+  return response.data;
 };

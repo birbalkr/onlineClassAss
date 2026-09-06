@@ -1,16 +1,15 @@
-import { Navigate } from "react-router";
 import { registerApi } from "../../api/authApi";
 import authHook from "../../hook/authHook";
 
 
 export default function RegisterForm() {
 
-    const { register, reset, handleSubmit, errors, navigate } = authHook();
+    const { register, reset, handleSubmit, navigate } = authHook();
 
     const registerData = (data: any) => {
         const { username, name, email, password } = data;
 
-        registerApi({ username, name, email, password }, "register")
+        registerApi({ username, name, email, password })
             .then((response) => {
                 console.log("Registration successful:", response);
             })
@@ -49,11 +48,6 @@ export default function RegisterForm() {
                         placeholder="aditya12"
                         className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-black focus:bg-white focus:ring-2 focus:ring-black/10"
                     />
-                    {errors.username && (
-                        <p className="mt-1 text-sm text-red-500">
-                            {errors.username.message}
-                        </p>
-                    )}
                 </div>
 
                 {/* Name */}

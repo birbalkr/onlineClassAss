@@ -1,21 +1,22 @@
 import { useState } from "react";
 import notesHooks from "../../hook/notesHooks";
 import { createNoteAPi } from "../../api/notesApi";
+import { logoutApi } from "../../api/authApi";
 
 function NoteNavbar({ user, setLoadData }: any) {
     const { navigate, register, reset, handleSubmit } = notesHooks();
 
     const [showAddNote, setShowAddNote] = useState(false);
-    // console.log("user Data ==> ",user.name);
+    console.log("user = ",user);
+    
 
-
-    // const [user] = useState({
-    //     name: "Aditya",
-    //     profileImg: "https://i.pravatar.cc/100?img=12",
-    // });
-
-    const handleLogout = () => {
-        navigate("/auth/login");
+    const handleLogout = async () => {
+        try {
+            await logoutApi()
+            navigate("/auth/login");
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
     };
 
     const handleAddNote = (data: any) => {

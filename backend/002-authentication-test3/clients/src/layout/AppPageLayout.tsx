@@ -17,22 +17,19 @@ function AppPageLayout() {
     const apiData = async () => {
 
         try {
-            const profileResponse = await profile();
-            setUser(profileResponse.data.data.user);
-
-
             const notesResponse = await getAllNotes();
-            setNotes(notesResponse.data.notes);
+            setNotes(notesResponse.notes);
+
+            const profileResponse = await profile();
+            setUser(profileResponse.data.user);
+
         } catch (error) {
             console.error("Error fetching data:", error);
+            navigate("/auth/login");
         } finally {
             setLoadData(false);
-            console.log("loadData effect ",loadData);
-            
         }
-
     }
-
     useEffect(() => {
         apiData();
     }, [loadData]);

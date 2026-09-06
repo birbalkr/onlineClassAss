@@ -15,7 +15,7 @@ export const getAllNotes = async () => {
     withCredentials: true,
   });
 
-  return response
+  return response.data
 };
 
 export const deleteNotesApi = async (noteId: string) => {

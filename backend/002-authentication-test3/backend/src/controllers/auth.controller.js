@@ -37,8 +37,6 @@ export const authControllerRegister = async (req, res) => {
 }
 
 
-
-
 export const authControllerLogin = async (req, res) => {
     const { email, password } = req.body;
 
@@ -94,3 +92,23 @@ export const authControllerMe = async (req, res) => {
         }
     })
 }
+
+export const authControllerLogout = async (req, res) => {
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+        });
+
+        return res.status(200).json({
+            message: "User logged out successfully",
+        });
+    } catch (error) {
+        console.error("Logout error:", error);
+
+        return res.status(500).json({
+            message: "Internal server error",
+        });
+    }
+};

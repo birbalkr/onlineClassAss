@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { deleteNotesApi, getAllNotes } from "../api/notesApi";
+import { deleteNotesApi } from "../api/notesApi";
 import { useState } from "react";
 
 function notesHooks() {
@@ -8,7 +8,6 @@ function notesHooks() {
   const [loadData, setLoadData] = useState(true)
 
   const deleteNotes = (noteId: string) => {
-    console.log(noteId);
     deleteNotesApi(noteId)
       .then((response) => {
         console.log("Note deleted successfully:", response);
