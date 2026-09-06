@@ -15,6 +15,7 @@ export const authControllerRegister = async (req, res) => {
     })
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    res.cookie("token", token);
     res.status(201).json({
         message: "User registered successfully",
         data: {
@@ -28,13 +29,17 @@ export const authControllerRegister = async (req, res) => {
     });
 
 }
+
+
+
+
 export const authControllerLogin = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await userModel.findOne({ email });
 
     console.log(user);
-    
+
 
     if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -46,6 +51,7 @@ export const authControllerLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    res.cookie("token", token);
 
     res.status(200).json({
         message: "User logged in successfully",
