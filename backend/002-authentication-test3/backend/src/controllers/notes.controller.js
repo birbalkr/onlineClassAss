@@ -1,6 +1,7 @@
 export const createNote = async (req, res) => {
     const id = req.cookies.notetoken;
     await connectDB(id);
+    
 }
 
 export const getAllNotes = async (req, res) => { }

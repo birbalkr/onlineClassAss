@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { profile } from "../../api/authApi";
-import authHook from "../../hook/authHook";
+import authHook from "../hook/authHook";
+import { profile } from "../api/authApi";
+import NoteNavbar from "../notes/components/NoteNavbar";
+import { createNoteAPi } from "../api/notesApi";
+import { Outlet } from "react-router";
 
 function AppPageLayout() {
     const [user, setUser] = useState<any>();
@@ -23,22 +26,15 @@ function AppPageLayout() {
                     navigate("/auth/login");
                 }
             });
-
         console.log("user", user);
     }, []);
 
     return (
         <div>
-            {user && (
-                <div>
-                    <h1>{user.username}</h1>
-                    <h2>{user.name}</h2>
-                    <p>{user.email}</p>
-                </div>
-            )}
-
-            <h1>App Page Layout It's me</h1>
+            <NoteNavbar />
+            <Outlet />
         </div>
+
     );
 }
 

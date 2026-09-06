@@ -4,6 +4,7 @@ import RegisterForm from '../components/auth/RegisterForm'
 import ForgotPage from '../components/auth/ForgotPage'
 import MainpageLayout from '../layout/MainpageLayout'
 import AppPageLayout from '../layout/AppPageLayout'
+import NotesPage from '../notes/page/NotesPage'
 
 
 const AuthRoutes = createBrowserRouter([
@@ -35,7 +36,7 @@ const AuthRoutes = createBrowserRouter([
         children: [
             {
                 path: "",
-                element:
+                element:<NotesPage/>
             }
         ]
     },
