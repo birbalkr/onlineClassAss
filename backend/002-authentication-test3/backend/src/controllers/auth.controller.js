@@ -2,6 +2,13 @@ import bcrypt from "bcryptjs";
 import userModel from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 60 * 60 * 1000,
+};
+
 export const authControllerRegister = async (req, res) => {
     const { username, name, email, password } = req.body;
 
@@ -16,11 +23,7 @@ export const authControllerRegister = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        maxAge: 60 * 60 * 1000,
-    });
+    res.cookie("token", token, cookieOptions);
 
     res.status(201).json({
         message: "User registered successfully",
@@ -57,11 +60,7 @@ export const authControllerLogin = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        maxAge: 60 * 60 * 1000,
-    });
+    res.cookie("token", token, cookieOptions);
 
     res.status(200).json({
         message: "User logged in successfully",
@@ -95,11 +94,7 @@ export const authControllerMe = async (req, res) => {
 
 export const authControllerLogout = async (req, res) => {
     try {
-        res.clearCookie("token", {
-            httpOnly: true,
-            secure: false,
-            sameSite: "lax",
-        });
+        res.clearCookie("token", cookieOptions);
 
         return res.status(200).json({
             message: "User logged out successfully",
