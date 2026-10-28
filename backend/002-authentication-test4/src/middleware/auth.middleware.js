@@ -9,6 +9,7 @@ export const authenticateUser = async (req, res, next) => {
             message: "Unauthorized"
         })
     }
+    console.log(token);
 
     const data = jwt.verify(token, config.JWT_SECRET);
     

@@ -37,4 +37,11 @@ export const authregister = async (req, res) => {
   });
 };
 
-export const authMe = async (req, res) => {};
+export const authMe = async (req, res) => {
+  res.status(200).json({
+    message: "user data fetch successfuly..",
+    data: {
+      user: req.user,
+    },
+  });
+};
