@@ -1,4 +1,4 @@
-import express, { json } from "express";
+import express from "express";
 import routes from "../routes/auth.routes.js";
 
 const app = express();
