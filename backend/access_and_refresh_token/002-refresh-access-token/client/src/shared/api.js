@@ -11,5 +11,25 @@ export default function useApi() {
     })
 
 
+    api.interceptors.request.use(config => {
+        config.headers.Authorization = `Bearer ${authContext.accesstoken}`
+
+        return config
+    })
+
+    api.interceptors.response.use(async config => {
+        if (config.status == 401) {
+            const res = await api.post("/auth/refreshToken")
+
+            authContext.setAccessToken(res.data.accessToken)
+            console.log("response  ",res);
+            
+            config.headers.Authorization = `Bearer ${res.data.accessToken}`
+        }
+
+        return api(config)
+    })
+
+    return api
 
 }
