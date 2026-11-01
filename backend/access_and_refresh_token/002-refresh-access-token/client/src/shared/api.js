@@ -17,18 +17,22 @@ export default function useApi() {
         return config
     })
 
-    api.interceptors.response.use(async config => {
-        if (config.status == 401) {
-            const res = await api.post("/auth/refreshToken")
+    api.interceptors.response.use(
+        response => response,
+        async (error) => {
+            if (error.response && error.response.status === 401) {
+                const res = await axios.post("/api/auth/refreshToken")
 
-            authContext.setAccessToken(res.data.accessToken)
-            console.log("response  ",res);
-            
-            config.headers.Authorization = `Bearer ${res.data.accessToken}`
+                authContext.setAccessToken(res.data.accessToken)
+
+                error.config.headers.Authorization = `Bearer ${res.data.accessToken}`
+
+                return axios(error.config)
+            }
+
+            return Promise.reject(error)
         }
-
-        return api(config)
-    })
+    )
 
     return api
 
