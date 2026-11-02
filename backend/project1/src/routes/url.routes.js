@@ -13,9 +13,9 @@ routes.post("/", async function (req, res) {
     }
 
     if (url.startsWith("http://") == false && url.startsWith("https://") == false) {
-        return res.status((400).json({
+        return res.status(400).json({
             error: "please enter a valid URL starting with http:// or https://"
-        }))
+        })
     }
 
     if (url.length > 2084) {
@@ -38,5 +38,16 @@ routes.post("/", async function (req, res) {
     })
 })
 
+
+routes.get("/", async function (req, res) {
+    const urls = await shortUrlModel.find()
+
+    return res.status(200).json({
+        message: "URL fetched successfully",
+        data: {
+            urls
+        }
+    })
+})
 
 export default routes

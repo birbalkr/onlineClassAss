@@ -2,13 +2,17 @@ import crypto from 'crypto'
 
 const generateCode = () => {
     const mainString = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
-    let shorCode = ""
+    let shortCode = "";
     for (let i = 0; i < 6; i++) {
-        shorCode += mainString.charAt(Math.floor(Math.round() * 62))
+        shortCode += mainString.charAt(Math.floor(Math.random() * 62));
     }
 
-    return shorCode
+    console.log(shortCode);
+    
+    // return shorCode
 }
 
+generateCode()
 
-export default generateCode
+
+// export default generateCode
