@@ -10,14 +10,47 @@ const demodata = [
 function App() {
   const [urls, setUrls] = useState(demodata);
   const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState("");
   const [currentUrl, setCurrentUrl] = useState(null);
 
   async function fetchUrls() {
-    const response = await axios.get("http://localhost:5173/api/url");
-    const responseData = response.data;
-    // setUrls(responseData.data.urls);
+    try {
+      const response = await axios.get("/api/url");
+      const fetchedUrls = response.data?.data?.urls;
 
-    console.log(response);
+      if (!Array.isArray(fetchedUrls)) {
+        throw new Error("The API returned an invalid URL list.");
+      }
+
+      setUrls(fetchedUrls);
+      setError("");
+    } catch (requestError) {
+      console.error("Failed to fetch URLs:", requestError);
+      setError("Unable to load your links. Please try again.");
+    }
+  }
+
+  async function createShortUrl() {
+    try {
+      const response = await axios.post("/api/url", {
+        url: inputValue,
+      });
+      const createdUrl = response.data?.data;
+
+      if (!createdUrl?.originalUrl || !createdUrl?.shortCode) {
+        throw new Error("The API returned an invalid shortened URL.");
+      }
+
+      setCurrentUrl({ ...createdUrl, clicks: 0 });
+      setInputValue("");
+      setError("");
+    } catch (requestError) {
+      console.error("Failed to create short URL:", requestError);
+      setError(
+        requestError.response?.data?.error ||
+          "Unable to shorten this URL. Please try again.",
+      );
+    }
   }
 
   useEffect(() => {
@@ -47,24 +80,56 @@ function App() {
               placeholder="Paste your long URL here..."
               className="min-w-[220px] flex-1 rounded-[10px] border-0 px-4 py-[15px] text-[15px] outline-none"
             />
-            <button className="cursor-pointer rounded-[10px] border-0 bg-[#172033] px-[22px] font-bold text-white">
+            <button
+              onClick={createShortUrl}
+              className="cursor-pointer rounded-[10px] border-0 bg-[#172033] px-[22px] font-bold text-white"
+            >
               SHORTEN URL
             </button>
           </div>
         </section>
 
-        <div className="mb-[14px] flex items-center justify-between">
-          <h2 className="m-0 text-xl">Your links</h2>
-          <span className="text-sm text-[#687386]">{urls.length} total</span>
-        </div>
+        {error && <p className="mb-4 text-sm text-[#d34b4b]">{error}</p>}
 
-        <section className="grid gap-[14px]">
-          {urls.length === 0 ? (
-            <div className="rounded-2xl bg-white p-12 text-center text-[#687386] shadow-[0_5px_20px_#1720330b]">
-              No links yet. Add your first URL above.
-            </div>
-          ) : (
-            urls.map((url) => (
+        {currentUrl && (
+          <section className="mb-8">
+            <h2 className="mb-[14px] text-xl">Your new link</h2>
+            <article className="rounded-2xl border-2 border-[#5865f2] bg-white p-5 shadow-[0_5px_20px_#5865f238]">
+              <div className="flex flex-wrap items-center justify-between gap-5">
+                <div className="min-w-0">
+                  <a
+                    href={`http://localhost:3000/${currentUrl.shortCode}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mb-[7px] mt-0 font-bold text-[#5865f2]"
+                  >
+                    /{currentUrl.shortCode}
+                  </a>
+                  <p className="m-0 max-w-[620px] overflow-hidden text-ellipsis whitespace-nowrap text-[#687386]">
+                    {currentUrl.originalUrl}
+                  </p>
+                </div>
+                <span className="text-sm text-[#687386]">
+                  {currentUrl.clicks} clicks
+                </span>
+              </div>
+            </article>
+          </section>
+        )}
+
+        <section>
+          <div className="mb-[14px] flex items-center justify-between">
+            <h2 className="m-0 text-xl">Older links</h2>
+            <span className="text-sm text-[#687386]">{urls.length} total</span>
+          </div>
+
+          <div className="grid gap-[14px]">
+            {urls.length === 0 ? (
+              <div className="rounded-2xl bg-white p-12 text-center text-[#687386] shadow-[0_5px_20px_#1720330b]">
+                No older links yet. Add your first URL above.
+              </div>
+            ) : (
+              urls.map((url) => (
               <article
                 key={url.shortCode}
                 className="rounded-2xl bg-white p-5 shadow-[0_5px_20px_#1720330b]"
@@ -72,7 +137,8 @@ function App() {
                 <div className="flex flex-wrap items-center justify-between gap-5">
                   <div className="min-w-0">
                     <a
-                      href={`http://localhost:3000/${url.shortCode}`} target="_blank"
+                      href={`http://localhost:3000/${url.shortCode}`}
+                      target="_blank"
                       className="mb-[7px] mt-0 font-bold text-[#5865f2]"
                     >
                       /{url.shortCode}
@@ -99,8 +165,9 @@ function App() {
                   </div>
                 </div>
               </article>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </section>
       </section>
     </main>
