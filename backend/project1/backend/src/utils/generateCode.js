@@ -7,12 +7,8 @@ const generateCode = () => {
         shortCode += mainString.charAt(Math.floor(Math.random() * 62));
     }
 
-    console.log(shortCode);
     
-    // return shorCode
+    return shortCode
 }
 
-generateCode()
-
-
-// export default generateCode
+export default generateCode

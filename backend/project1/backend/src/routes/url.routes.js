@@ -50,4 +50,23 @@ routes.get("/", async function (req, res) {
     })
 })
 
+
+routes.delete("/:id", async function (req, res) {
+    const { id } = req.params
+
+    const url = await shortUrlModel.findById(id)
+
+    if (!url) {
+        return res.status(404).json({
+            message: "URL not found"
+        })
+    }
+
+    await shortUrlModel.findByIdAndDelete(id)
+
+    return res.status(200).json({
+        message: "Url deleted successfully"
+    })
+})
+
 export default routes
