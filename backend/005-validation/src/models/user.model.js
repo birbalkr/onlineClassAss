@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    emial: {
+    email: {
         type: String,
-        required: true,
+        require: true,
         unique: true
     },
     phone: {
-        types: String,
+        type: String,
         require: true,
         unique: true
     },

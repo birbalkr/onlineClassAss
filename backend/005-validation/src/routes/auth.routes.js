@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { register } from '../controllers/auth.controller.js'
+import { registerValidation } from '../validators/auth.validtor.js'
 
 
 const routes = Router()
@@ -11,6 +12,6 @@ const routes = Router()
 */
 
 
-routes.post("/register", register)
+routes.post("/register", registerValidation, register)
 
 export default routes
