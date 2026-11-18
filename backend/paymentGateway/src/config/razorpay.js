@@ -1,5 +1,5 @@
 import config from "./config.js"
-import Razorpay from Razorpay
+import Razorpay from 'razorpay'
 
 
 

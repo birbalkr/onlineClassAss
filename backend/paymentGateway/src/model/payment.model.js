@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
+
 
 const paymentSchema = new mongoose.Schema(
     {
@@ -7,9 +8,11 @@ const paymentSchema = new mongoose.Schema(
         signature: { type: String },
         amount: { type: Number, required: true },   // in paise
         currency: { type: String, default: "INR" },
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "product", required: true },
         status: { type: String, enum: ["pending", "completed", "failed"], default: "pending" },
     },
     { timestamps: true }
 );
 
-module.exports = mongoose.model("payment", paymentSchema);
+const paymentModel = mongoose.model("payment", paymentSchema);
+export default paymentModel;
