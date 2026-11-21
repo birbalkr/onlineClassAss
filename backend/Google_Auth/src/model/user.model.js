@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     fullname: {
@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: function () {
+            return !this.githubId && !this.googleId;
+        },
         unique: true,
         trim: true,
         lowercase: true
@@ -16,14 +18,17 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: function () {
-            return !this.googleId
+            return !this.googleId && !this.githubId;
         }
     },
     googleId: {
         type: String
+    },
+    githubId: {
+        type: String
     }
-
-})
+}, { timestamps: true });
 
 const userModel = mongoose.model("user", userSchema);
-export default userModel
+
+export default userModel;
